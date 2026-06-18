@@ -44,6 +44,40 @@
                                   LargeImageSource="/Assets/Icons/tinhdovong.png" />
 
                 </RibbonGroup>
+                
+            </RibbonTab>
+            <RibbonTab Header="Trợ giúp">
+                <RibbonGroup Header="Help">
+                    <RibbonButton x:Name="rbt_trogiup" Label="Trợ giúp" 
+                                  SmallImageSource="/Assets/Icons/trogiup.png"/>
+                    <RibbonButton x:Name="rbt_huongdan" Label="Hướng dẫn" 
+                                  SmallImageSource="/Assets/Icons/huongdan.png"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Hỗ trợ kỹ thuật">
+                    <RibbonButton x:Name="rbt_Email" Label="Email hỗ trợ"
+                                  Click="rbt_Email_Click"
+                                  SmallImageSource="/Assets/Icons/email.png"/>
+                    <RibbonButton x:Name="rbt_Lienhe" Label="Liên hệ" 
+                                  Click="rbt_Lienhe_Click"
+                                  SmallImageSource="/Assets/Icons/contact-mail.png" />
+                    <RibbonButton x:Name="rbt_Baoloi" Label="Báo lỗi" 
+                                  Click="rbt_Baoloi_Click"
+                                   SmallImageSource="/Assets/Icons/bug-report.png"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Hướng dẫn sử dụng">
+                    <RibbonButton x:Name="rbt_Huongdan" Label="Hướng dẫn chi tiết" 
+                                  SmallImageSource="/Assets/Icons/information.png"/>
+                    <RibbonButton x:Name="rbt_Videohuongdan" Label="Video hướng dẫn" 
+                                  SmallImageSource="/Assets/Icons/video.png"/>
+                    <RibbonButton x:Name="rbt_Cacthaotaccoban" Label="Các thao tác cơ bản" 
+                                  SmallImageSource="/Assets/Icons/thaotac.png"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Cập nhật">
+                    <RibbonButton x:Name="rbt_Kiemtracapnhat" Label="Kiểm tra cập nhật" 
+                                   SmallImageSource="/Assets/Icons/loading-arrow.png"/>
+                    <RibbonButton x:Name="rbt_Capnhatmoi" Label="Cập nhật mới" 
+                                   SmallImageSource="/Assets/Icons/update.png"/>
+                </RibbonGroup>
             </RibbonTab>
         </Ribbon>
     </Grid>
