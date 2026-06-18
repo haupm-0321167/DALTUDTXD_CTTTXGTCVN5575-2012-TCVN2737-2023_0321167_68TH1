@@ -25,6 +25,25 @@
                                   LargeImageSource="/Assets/Icons/matbang2D.png" />
 
                 </RibbonGroup>
+                <RibbonGroup Header="Mô hình">
+                    <RibbonButton Label="Mặt cắt xà gồ"
+                                  Click="BtnMatcatxago_Click"
+                                  LargeImageSource="/Assets/Icons/tinhphanlucgoi.png" />
+
+                </RibbonGroup>
+
+                <RibbonGroup Header="Biểu đồ nội lực">
+                    <RibbonButton Label="Biểu đồ Moment"
+                                  Click="BtnMoment_Click"
+                                  LargeImageSource="/Assets/Icons/bieudonoiluc.png" />
+                    <RibbonButton Label="Biểu đồ Lực cắt"
+                                  Click="BtnBieudoluccat_Click"
+                                  LargeImageSource="/Assets/Icons/noiluc.png" />
+                    <RibbonButton Label="Biểu đồ Độ võng"
+                                  Click="BtnBieudodovong_Click"
+                                  LargeImageSource="/Assets/Icons/tinhdovong.png" />
+
+                </RibbonGroup>
             </RibbonTab>
         </Ribbon>
     </Grid>
