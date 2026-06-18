@@ -7,7 +7,7 @@
         mc:Ignorable="d"
          Height="150" Width="800">
     <Grid>
-        <Ribbon Grid.Row="0" SelectedIndex="2" Background="#FFDDE7F4">
+        <Ribbon Grid.Row="0" SelectedIndex="1" Background="#FFDDE7F4">
             <RibbonTab Header="Hiển thị">
                 <RibbonGroup Header="Chế độ hiển thị">
                     <RibbonButton Label="Chế độ 3D"
