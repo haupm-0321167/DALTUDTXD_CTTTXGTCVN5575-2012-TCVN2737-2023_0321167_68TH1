@@ -18,11 +18,13 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserCo
     /// <summary>
     /// Interaction logic for UC_Ribbon.xaml
     /// </summary>
-    public partial class UC_Ribbon : Window
+    public partial class UC_Ribbon : UserControl
     {
-        public UC_Ribbon()
+        private Frame Mainframe;
+        public UC_Ribbon(Frame mainFrame)
         {
             InitializeComponent();
+            this.Mainframe = mainFrame;
         }
         private void rbt_Lienhe_Click(object sender, RoutedEventArgs e)
         {
