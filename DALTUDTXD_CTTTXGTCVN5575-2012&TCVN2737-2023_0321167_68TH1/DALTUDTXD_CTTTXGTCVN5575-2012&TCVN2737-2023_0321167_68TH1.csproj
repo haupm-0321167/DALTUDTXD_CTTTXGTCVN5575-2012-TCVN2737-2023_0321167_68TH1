@@ -57,6 +57,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
+      <DependentUpon>ThongsoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\POPUP_PHAMHAU\ContactView.xaml.cs">
       <DependentUpon>ContactView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Pages\ThongsoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\POPUP_PHAMHAU\ContactView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,7 +127,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\2D.png" />
