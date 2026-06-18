@@ -90,6 +90,59 @@
                     <Button Content="Thêm " Click="btn_them_click" Width="50" Margin="10,20,0,0" />
                     <Button Content="Xoá"  Click="btn_xoa_click" Width="50" Margin="10,20,0,0" />
                 </StackPanel>
+                <DataGrid x:Name="dgCot"
+              Grid.Row="1"
+              AutoGenerateColumns="False"
+              CanUserAddRows="False"
+              Margin="0,0,0,0">
+
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                        <DataGridTextColumn Header="H (mm)" Binding="{Binding Height }" />
+                        <DataGridTextColumn Header="B (mm)" Binding="{Binding Width }" />
+                        <DataGridTextColumn Header="C (mm)" Binding="{Binding Lip }" />
+                        <DataGridTextColumn Header="t (mm)" Binding="{Binding Thickness }" />
+                        <DataGridTextColumn Header="B1 (mm)" Binding="{Binding ExtraWidth }" />
+                        <DataGridTextColumn Header="D (mm)" Binding="{Binding Length }" />
+                        <DataGridTextColumn Header="A (cm2)" Binding="{Binding A}" />
+                        <DataGridTextColumn Header="G (kg/m)" Binding="{Binding G}" />
+
+                        <DataGridTextColumn Header="Ix (cm4)" Binding="{Binding Ix}" />
+                        <DataGridTextColumn Header="Iy (cm4)" Binding="{Binding Iy}" />
+
+                        <DataGridTextColumn Header="Wx (cm3)" Binding="{Binding Wx}" />
+                        <DataGridTextColumn Header="Wy (cm3)" Binding="{Binding Wy}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Grid.Row="2" 
+                Content="kiểm tra" 
+                Width="100" 
+                Height="20" 
+                Click="btn_KiemTra_Click"
+                HorizontalAlignment="Left" 
+                Command="{Binding}" 
+                Margin="808,281,0,0" 
+                Grid.RowSpan="2" 
+                VerticalAlignment="Top" />
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1"
+BorderBrush="Black"
+BorderThickness="1"
+Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="SƠ ĐỒ CHUNG" Grid.Row="0" Grid.Column="0" 
+           FontWeight="Bold" Margin="0"/>
+                <Image x:Name="imgSoDo"
+               Grid.Row="1"
+               Stretch="Uniform"/>
 
             </Grid>
         </Border>
