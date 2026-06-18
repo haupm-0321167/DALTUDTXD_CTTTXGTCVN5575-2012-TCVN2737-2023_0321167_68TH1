@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls.UC_Ribbon"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls"
+        mc:Ignorable="d"
+         Height="150" Width="800">
+    <Grid>
+        <Ribbon Grid.Row="0" SelectedIndex="2" Background="#FFDDE7F4">
+            <RibbonTab Header="Hiển thị">
+                <RibbonGroup Header="Chế độ hiển thị">
+                    <RibbonButton Label="Chế độ 3D"
+                                  Click="Btn3D_Click"
+                                  LargeImageSource="/Assets/Icons/3D.png" />
+                    <RibbonButton Label="Chế độ12D"
+                                  Click="Btn2D_Click"
+                                  LargeImageSource="/Assets/Icons/2D.png" />
+
+                </RibbonGroup>
+
+                <RibbonGroup Header="Mặt bằng">
+                    <RibbonButton Label="Mặt bằng 2D"
+                                  Click="BtnMatbang2D_Click"
+                                  LargeImageSource="/Assets/Icons/matbang2D.png" />
+
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+    </Grid>
+</UserControl>

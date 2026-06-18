@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
+      <DependentUpon>UC_Ribbon.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +71,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UserControls\UC_Ribbon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -93,6 +101,67 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\2D.png" />
+    <Resource Include="Assets\Icons\3D.png" />
+    <Resource Include="Assets\Icons\baocaoketqua.png" />
+    <Resource Include="Assets\Icons\bieudonoiluc.png" />
+    <Resource Include="Assets\Icons\bug-report.png" />
+    <Resource Include="Assets\Icons\chon.png" />
+    <Resource Include="Assets\Icons\Connect.png" />
+    <Resource Include="Assets\Icons\contact-mail.png" />
+    <Resource Include="Assets\Icons\email.png" />
+    <Resource Include="Assets\Icons\globe.png" />
+    <Resource Include="Assets\Icons\huongdan.png" />
+    <Resource Include="Assets\Icons\information.png" />
+    <Resource Include="Assets\Icons\ketnoi.png" />
+    <Resource Include="Assets\Icons\khaibao.png" />
+    <Resource Include="Assets\Icons\khaibaotaitrong.png" />
+    <Resource Include="Assets\Icons\kiemtradoben.png" />
+    <Resource Include="Assets\Icons\kiemtradovong.png" />
+    <Resource Include="Assets\Icons\kiemtraluccat.png" />
+    <Resource Include="Assets\Icons\kiemtraondinh.png" />
+    <Resource Include="Assets\Icons\laydulieu.png" />
+    <Resource Include="Assets\Icons\loading-arrow.png" />
+    <Resource Include="Assets\Icons\matbang2D.png" />
+    <Resource Include="Assets\Icons\mophongtinhtoan.png" />
+    <Resource Include="Assets\Icons\noiluc.png" />
+    <Resource Include="Assets\Icons\open.png" />
+    <Resource Include="Assets\Icons\save.png" />
+    <Resource Include="Assets\Icons\share.png" />
+    <Resource Include="Assets\Icons\thaotac.png" />
+    <Resource Include="Assets\Icons\thongsodauvao.png" />
+    <Resource Include="Assets\Icons\thongsothietke.png" />
+    <Resource Include="Assets\Icons\tinhdovong.png" />
+    <Resource Include="Assets\Icons\tinhphanlucgoi.png" />
+    <Resource Include="Assets\Icons\tinhtoan.png" />
+    <Resource Include="Assets\Icons\tinhtoannoiluc.png" />
+    <Resource Include="Assets\Icons\tinhtoanthanhcong.png" />
+    <Resource Include="Assets\Icons\trogiup.png" />
+    <Resource Include="Assets\Icons\update.png" />
+    <Resource Include="Assets\Icons\video.png" />
+    <Resource Include="Assets\Icons\xembaocao.png" />
+    <Resource Include="Assets\Icons\xemketqua.png" />
+    <Resource Include="Assets\Icons\xemnoiluc.png" />
+    <Resource Include="Assets\Icons\xuatbaocao.png" />
+    <Resource Include="Assets\Icons\xuatexcel.png" />
+    <Resource Include="Assets\Icons\xuatketqua.png" />
+    <Resource Include="Assets\Icons\xuatword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\BackGround.png" />
+    <Resource Include="Assets\Images\chunhat.png" />
+    <Resource Include="Assets\Images\C_can_nong.png" />
+    <Resource Include="Assets\Images\C_dap_nguoi.png" />
+    <Resource Include="Assets\Images\vuong.png" />
+    <Resource Include="Assets\Images\Z_can_nong.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
