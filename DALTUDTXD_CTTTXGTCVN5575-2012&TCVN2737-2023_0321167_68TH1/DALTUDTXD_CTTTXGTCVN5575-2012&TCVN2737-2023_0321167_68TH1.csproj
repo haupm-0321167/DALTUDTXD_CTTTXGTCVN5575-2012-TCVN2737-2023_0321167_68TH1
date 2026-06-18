@@ -60,6 +60,9 @@
     <Compile Include="Views\POPUP_PHAMHAU\ContactView.xaml.cs">
       <DependentUpon>ContactView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\POPUP_PHAMHAU\Emailview.xaml.cs">
+      <DependentUpon>Emailview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\POPUP_PHAMHAU\ContactView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_PHAMHAU\Emailview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
