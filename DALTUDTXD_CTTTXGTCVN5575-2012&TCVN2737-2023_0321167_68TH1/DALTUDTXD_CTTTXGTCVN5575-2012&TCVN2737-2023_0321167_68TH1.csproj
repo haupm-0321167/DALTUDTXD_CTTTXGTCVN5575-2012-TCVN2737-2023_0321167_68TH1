@@ -116,6 +116,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\xagocnguoi.json" />
+    <None Include="Data\xagocnong.json" />
+    <None Include="Data\xagohop.json" />
+    <None Include="Data\xagov.json" />
+    <None Include="Data\xagozdn.json" />
+    <None Include="Data\xagozn.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,7 +131,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
