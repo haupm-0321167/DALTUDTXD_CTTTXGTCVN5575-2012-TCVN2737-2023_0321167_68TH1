@@ -30,5 +30,11 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserCo
             MV.Show();
 
         }
+        private void rbt_Email_Click(object sender, RoutedEventArgs e)
+        {
+            Emailview emailview = new Emailview();
+            emailview.Show();
+
+        }
     }
 }
