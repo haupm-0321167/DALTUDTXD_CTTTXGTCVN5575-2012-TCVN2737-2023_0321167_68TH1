@@ -169,6 +169,9 @@
     <Compile Include="Views\Pages\ChonhaPage.xaml.cs">
       <DependentUpon>ChonhaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
+      <DependentUpon>ThongsoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
     </Compile>
@@ -188,6 +191,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Pages\ChonhaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ThongsoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

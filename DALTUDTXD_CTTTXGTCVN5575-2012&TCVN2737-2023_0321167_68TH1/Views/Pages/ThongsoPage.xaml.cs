@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1
+namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ThongsoPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ThongsoPage : Page
     {
-        public MainWindow()
+        public ThongsoPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Views.Pages.ChonhaPage());
         }
     }
 }

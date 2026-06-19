@@ -1,0 +1,136 @@
+<Page x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages.ThongsoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages"
+           mc:Ignorable="d" 
+      d:DesignHeight="580" d:DesignWidth="1150"
+      Title="ThongsoPage">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+            Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Border Grid.Row="0" Grid.Column="1"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Margin="5">
+            <Grid Grid.Row="0" Grid.Column="1" Margin="10,0,0,0">
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Chọn Xà Gồ" />
+                        <ComboBox x:Name="cbb_LoaiXG" Width="150" Height="25" SelectionChanged="cbb_LoaiXG_SelectionChanged"  >
+                            <ComboBoxItem Content="XG C cán nóng"/>
+                            <ComboBoxItem Content="XG C dập nguội"/>
+                            <ComboBoxItem Content="XG Z cán nóng"/>
+                            <ComboBoxItem Content="XG Z dập nguội"/>
+                            <ComboBoxItem Content="XG thép hộp chữ nhật"/>
+                            <ComboBoxItem Content="XG thép hộp vuông"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Chọn Số Hiệu" />
+                        <ComboBox x:Name="cbb_SoHieu" Width="150" Height="25" SelectionChanged="cbb_SoHieu_SelectionChanged"  >
+
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Chiều cao H (mm)" />
+                        <TextBox x:Name="txt_H" Width="100"
+                             />
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Cánh chính B (mm)" />
+                        <TextBox x:Name="txt_B" Width="100"
+                             />
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text= "Mép gân C (mm)" />
+                        <TextBox x:Name="txt_C" Width="100"
+                             />
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Độ dày t (mm)" />
+                        <TextBox x:Name="txt_t" Width="100"
+                             />
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Cánh phụ B1 (mm)" />
+                        <TextBox x:Name="txt_B1" Width="100"
+                             />
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Chiều dài D (mm)" />
+                        <TextBox x:Name="txt_D" Width="100"
+                             />
+                    </StackPanel>
+                    <Button Content="Thêm " Click="btn_them_click" Width="50" Margin="10,20,0,0" />
+                    <Button Content="Xoá"  Click="btn_xoa_click" Width="50" Margin="10,20,0,0" />
+                </StackPanel>
+                <DataGrid x:Name="dgCot"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Margin="0,0,0,0">
+
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                        <DataGridTextColumn Header="H (mm)" Binding="{Binding Height }" />
+                        <DataGridTextColumn Header="B (mm)" Binding="{Binding Width }" />
+                        <DataGridTextColumn Header="C (mm)" Binding="{Binding Lip }" />
+                        <DataGridTextColumn Header="t (mm)" Binding="{Binding Thickness }" />
+                        <DataGridTextColumn Header="B1 (mm)" Binding="{Binding ExtraWidth }" />
+                        <DataGridTextColumn Header="D (mm)" Binding="{Binding Length }" />
+                        <DataGridTextColumn Header="A (cm2)" Binding="{Binding A}" />
+                        <DataGridTextColumn Header="G (kg/m)" Binding="{Binding G}" />
+
+                        <DataGridTextColumn Header="Ix (cm4)" Binding="{Binding Ix}" />
+                        <DataGridTextColumn Header="Iy (cm4)" Binding="{Binding Iy}" />
+
+                        <DataGridTextColumn Header="Wx (cm3)" Binding="{Binding Wx}" />
+                        <DataGridTextColumn Header="Wy (cm3)" Binding="{Binding Wy}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Grid.Row="2" 
+                    Content="kiểm tra" 
+                    Width="100" 
+                    Height="20" 
+                    Click="btn_KiemTra_Click"
+                    HorizontalAlignment="Left" 
+                    Command="{Binding}" 
+                    Margin="808,281,0,0" 
+                    Grid.RowSpan="2" 
+                    VerticalAlignment="Top" />
+
+            </Grid>
+        </Border>
+
+      
+
+    </Grid>
+</Page>
