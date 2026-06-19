@@ -1,0 +1,345 @@
+{
+  "Hà Nội": {
+    "vung_gio": "II",
+    "ap_luc_gio": 95,
+    "dia_hinh": "B",
+    "quan_huyen": {
+      "Ba Đình": [ "Phúc Xá", "Trúc Bạch", "Liễu Giai" ],
+      "Hoàn Kiếm": [ "Hàng Bạc", "Hàng Gai", "Tràng Tiền" ],
+      "Cầu Giấy": [ "Dịch Vọng", "Mai Dịch", "Quan Hoa" ]
+    }
+  },
+
+  "Hải Phòng": {
+    "vung_gio": "III",
+    "ap_luc_gio": 125,
+    "dia_hinh": "B",
+    "quan_huyen": {
+      "Vĩnh Bảo": [ "Tân Liên", "Tam Cường", "Vĩnh An" ],
+      "Ngô Quyền": [ "Lạch Tray", "Máy Tơ" ],
+      "Hồng Bàng": [ "Minh Khai", "Phan Bội Châu" ]
+    }
+  },
+
+  "TP Hồ Chí Minh": {
+    "vung_gio": "II",
+    "ap_luc_gio": 90,
+    "dia_hinh": "A",
+    "quan_huyen": {
+      "Quận 1": [ "Bến Nghé", "Bến Thành" ],
+      "Quận 3": [ "Phường 1", "Phường 2" ],
+      "Thủ Đức": [ "Linh Trung", "Tam Bình" ]
+    }
+  },
+
+  "Đà Nẵng": {
+    "vung_gio": "III",
+    "ap_luc_gio": 115,
+    "dia_hinh": "A",
+    "quan_huyen": {
+      "Hải Châu": [ "Hải Châu 1", "Thạch Thang" ],
+      "Sơn Trà": [ "An Hải Bắc", "Mân Thái" ]
+    }
+  },
+
+  "Cần Thơ": {
+    "vung_gio": "II",
+    "ap_luc_gio": 85,
+    "dia_hinh": "A",
+    "quan_huyen": {
+      "Ninh Kiều": [ "An Bình", "Xuân Khánh" ],
+      "Bình Thủy": [ "Long Hòa", "Long Tuyền" ]
+    }
+  },
+
+  "An Giang": {
+    "vung_gio": "II",
+    "ap_luc_gio": 80,
+    "dia_hinh": "A"
+  },
+  "Bà Rịa - Vũng Tàu": {
+    "vung_gio": "III",
+    "ap_luc_gio": 110,
+    "dia_hinh": "A"
+  },
+  "Bắc Giang": {
+    "vung_gio": "II",
+    "ap_luc_gio": 95,
+    "dia_hinh": "A"
+  },
+  "Bắc Kạn": {
+    "vung_gio": "II",
+    "ap_luc_gio": 90,
+    "dia_hinh": "B"
+  },
+  "Bạc Liêu": {
+    "vung_gio": "III",
+    "ap_luc_gio": 115,
+    "dia_hinh": "A"
+  },
+  "Bắc Ninh": {
+    "vung_gio": "II",
+    "ap_luc_gio": 95,
+    "dia_hinh": "B"
+  },
+  "Bến Tre": {
+    "vung_gio": "III",
+    "ap_luc_gio": 110,
+    "dia_hinh": "A"
+  },
+  "Bình Dương": {
+    "vung_gio": "II",
+    "ap_luc_gio": 85,
+    "dia_hinh": "B"
+  },
+  "Bình Định": {
+    "vung_gio": "III",
+    "ap_luc_gio": 125,
+    "dia_hinh": "B"
+  },
+  "Bình Phước": {
+    "vung_gio": "II",
+    "ap_luc_gio": 85,
+    "dia_hinh": "A"
+  },
+  "Bình Thuận": {
+    "vung_gio": "III",
+    "ap_luc_gio": 130,
+    "dia_hinh": "B"
+  },
+  "Cà Mau": {
+    "vung_gio": "III",
+    "ap_luc_gio": 115,
+    "dia_hinh": "A"
+  },
+  "Cao Bằng": {
+    "vung_gio": "II",
+    "ap_luc_gio": 90,
+    "dia_hinh": "A"
+  },
+  "Đắk Lắk": {
+    "vung_gio": "II",
+    "ap_luc_gio": 80,
+    "dia_hinh": "A"
+  },
+  "Đắk Nông": {
+    "vung_gio": "II",
+    "ap_luc_gio": 80,
+    "dia_hinh": "A"
+  },
+  "Điện Biên": {
+    "vung_gio": "II",
+    "ap_luc_gio": 85,
+    "dia_hinh": "B"
+  },
+  "Đồng Nai": {
+    "vung_gio": "II",
+    "ap_luc_gio": 85,
+    "dia_hinh": "A"
+  },
+  "Đồng Tháp": {
+    "vung_gio": "II",
+    "ap_luc_gio": 80,
+    "dia_hinh": "A"
+  },
+  "Gia Lai": {
+    "vung_gio": "II",
+    "ap_luc_gio": 80,
+    "dia_hinh": "B"
+  },
+  "Hà Giang": {
+    "vung_gio": "II",
+    "ap_luc_gio": 90,
+    "dia_hinh": "B"
+  },
+  "Hà Nam": {
+    "vung_gio": "II",
+    "ap_luc_gio": 95,
+    "dia_hinh": "B"
+  },
+  "Hà Tĩnh": {
+    "vung_gio": "III",
+    "ap_luc_gio": 130,
+    "dia_hinh": "B"
+  },
+  "Hải Dương": {
+    "vung_gio": "II",
+    "ap_luc_gio": 95,
+    "dia_hinh": "B"
+  },
+  "Hậu Giang": {
+    "vung_gio": "II-A",
+    "ap_luc_gio": 80,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Hòa Bình": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 90,
+    "dia_hinh": "Trung du"
+  },
+  "Hưng Yên": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 95,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Khánh Hòa": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 125,
+    "dia_hinh": "Ven biển"
+  },
+  "Kiên Giang": {
+    "vung_gio": "III-A",
+    "ap_luc_gio": 110,
+    "dia_hinh": "Ven biển"
+  },
+  "Kon Tum": {
+    "vung_gio": "II-A",
+    "ap_luc_gio": 80,
+    "dia_hinh": "Cao nguyên"
+  },
+  "Lai Châu": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 85,
+    "dia_hinh": "Miền núi"
+  },
+  "Lâm Đồng": {
+    "vung_gio": "II-A",
+    "ap_luc_gio": 80,
+    "dia_hinh": "Cao nguyên"
+  },
+  "Lạng Sơn": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 95,
+    "dia_hinh": "Miền núi"
+  },
+  "Lào Cai": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 90,
+    "dia_hinh": "Miền núi"
+  },
+  "Long An": {
+    "vung_gio": "II-A",
+    "ap_luc_gio": 85,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Nam Định": {
+    "vung_gio": "III-A",
+    "ap_luc_gio": 110,
+    "dia_hinh": "Ven biển"
+  },
+  "Nghệ An": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 125,
+    "dia_hinh": "Ven biển"
+  },
+  "Ninh Bình": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 95,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Ninh Thuận": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 130,
+    "dia_hinh": "Ven biển"
+  },
+  "Phú Thọ": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 90,
+    "dia_hinh": "Trung du"
+  },
+  "Phú Yên": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 125,
+    "dia_hinh": "Ven biển"
+  },
+  "Quảng Bình": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 130,
+    "dia_hinh": "Ven biển"
+  },
+  "Quảng Nam": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 125,
+    "dia_hinh": "Ven biển"
+  },
+  "Quảng Ngãi": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 125,
+    "dia_hinh": "Ven biển"
+  },
+  "Quảng Ninh": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 130,
+    "dia_hinh": "Ven biển"
+  },
+  "Quảng Trị": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 130,
+    "dia_hinh": "Ven biển"
+  },
+  "Sóc Trăng": {
+    "vung_gio": "III-A",
+    "ap_luc_gio": 110,
+    "dia_hinh": "Ven biển"
+  },
+  "Sơn La": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 85,
+    "dia_hinh": "Miền núi"
+  },
+  "Tây Ninh": {
+    "vung_gio": "II-A",
+    "ap_luc_gio": 85,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Thái Bình": {
+    "vung_gio": "III-A",
+    "ap_luc_gio": 110,
+    "dia_hinh": "Ven biển"
+  },
+  "Thái Nguyên": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 90,
+    "dia_hinh": "Trung du"
+  },
+  "Thanh Hóa": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 125,
+    "dia_hinh": "Ven biển"
+  },
+  "Thừa Thiên Huế": {
+    "vung_gio": "III-B",
+    "ap_luc_gio": 130,
+    "dia_hinh": "Ven biển"
+  },
+  "Tiền Giang": {
+    "vung_gio": "III-A",
+    "ap_luc_gio": 110,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Trà Vinh": {
+    "vung_gio": "III-A",
+    "ap_luc_gio": 110,
+    "dia_hinh": "Ven biển"
+  },
+  "Tuyên Quang": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 90,
+    "dia_hinh": "Miền núi"
+  },
+  "Vĩnh Long": {
+    "vung_gio": "II-A",
+    "ap_luc_gio": 80,
+    "dia_hinh": "Đồng bằng"
+  },
+  "Vĩnh Phúc": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 95,
+    "dia_hinh": "Trung du"
+  },
+  "Yên Bái": {
+    "vung_gio": "II-B",
+    "ap_luc_gio": 90,
+    "dia_hinh": "Miền núi"
+  }
+}
