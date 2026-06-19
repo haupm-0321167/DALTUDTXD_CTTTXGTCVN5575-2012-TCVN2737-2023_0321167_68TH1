@@ -129,8 +129,24 @@
 
             </Grid>
         </Border>
+        <Border Grid.Row="1" Grid.Column="1"
+        BorderBrush="Black"
+        BorderThickness="1"
+        Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="SƠ ĐỒ CHUNG" Grid.Row="0" Grid.Column="0" 
+           FontWeight="Bold" Margin="0"/>
+                <Image x:Name="imgSoDo"
+               Grid.Row="1"
+               Stretch="Uniform"/>
 
-      
+            </Grid>
+
+        </Border>
 
     </Grid>
 </Page>
