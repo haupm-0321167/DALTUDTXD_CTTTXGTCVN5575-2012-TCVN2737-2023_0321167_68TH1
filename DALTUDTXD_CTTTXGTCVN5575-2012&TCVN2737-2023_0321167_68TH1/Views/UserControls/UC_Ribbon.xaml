@@ -1,0 +1,60 @@
+<UserControl x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls.UC_Ribbon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls"
+             mc:Ignorable="d" 
+         d:DesignHeight="150" d:DesignWidth="800">
+    <Grid>
+        <Ribbon Grid.Row="0" SelectedIndex="2" Background="#FFDDE7F4">
+            <RibbonTab Header="Dữ liệu">
+                <RibbonGroup Header="Etabs API">
+                    <RibbonButton x:Name="rbt_KetNoiEtabs" Label="Kết nối Etabs"
+                                  Click="rbt_KetNoiEtabs_Click"
+                                  LargeImageSource="/Assets/Icons/Connect.png"/>
+                    <RibbonCheckBox Label="Lấy dữ liệu tự động"/>
+                    <RibbonComboBox Label="Chọn loại xà gồ"
+                                    SmallImageSource="/Assets/Icons/chon.png">
+                        <RibbonGallery>
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="xà gồ chữ Z"/>
+                                <RibbonGalleryItem Content="Xà gồ chữ C"/>
+                                <RibbonGalleryItem Content="Xà gồ thép hộp"/>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup Header="Tệp tin">
+                    <RibbonButton x:Name="rbt_Luu" Label="lưu" LargeImageSource="/Assets/Icons/save.png"/>
+                    <RibbonButton x:Name="rbt_Mo" Label="Mở" LargeImageSource="/Assets/Icons/open.png"/>
+                    <RibbonButton x:Name="rbt_Chiase" Label="Chia sẻ" LargeImageSource="/Assets/Icons/share.png"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Tải trọng">
+                    <RibbonButton x:Name="rbt_Khaibaotaitrong" Label="Khai báo tải trọng"
+                    Click="rbt_Khaibaotaitrong_Click"
+
+                    LargeImageSource="/Assets/Icons/khaibaotaitrong.png"/>
+                     <RibbonButton x:Name="rbt_TohopTaitrong" Label="Tổ hợp tải trọng"
+                    Click="rbt_TohopTaitrong_Click"
+ 
+            LargeImageSource="/Assets/Icons/khaibao.png"/>
+                </RibbonGroup>
+
+                <RibbonGroup Header="Thông số">
+                    <RibbonButton x:Name="rbt_Thongsothietke" Label="Thông số thiết kế"
+
+            LargeImageSource="/Assets/Icons/thongsothietke.png"/>
+                    <RibbonButton x:Name="rbt_Thongsodauvao" Label="Thông số đầu vào" 
+
+            LargeImageSource="/Assets/Icons/thongsodauvao.png"/>
+
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+
+
+
+    </Grid>
+</UserControl>
