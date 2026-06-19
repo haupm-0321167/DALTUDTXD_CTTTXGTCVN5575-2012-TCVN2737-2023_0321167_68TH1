@@ -1,0 +1,142 @@
+﻿<Page x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages.ChonhaPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages"
+           mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChonnhaPage" >
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+            Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <StackPanel Margin="0,0,0,20">
+            <TextBlock Text="PHẦN MỀM TÍNH TOÁN XÀ GỒ"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#1E3A5F"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Vui lòng chọn loại công trình để bắt đầu"
+                       FontSize="15"
+                       Foreground="Gray"
+                       HorizontalAlignment="Center"
+                       Margin="0,8,0,0"/>
+        </StackPanel>
+
+
+        <UniformGrid Grid.Row="1"
+                     Rows="2"
+                     Columns="2"
+                     Margin="0,10,0,10">
+
+            <Button x:Name="btn_MaiBang"
+                    Click="btn_MaiBang_Click"
+                    Margin="10"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    BorderBrush="#2E8B57"
+                    BorderThickness="2"
+                    Cursor="Hand">
+                <StackPanel>
+                    <TextBlock Text="🏠"
+                               FontSize="45"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="NHÀ MÁI BẰNG"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="btn_MaiDoc1"
+                    Click="btn_MaiDoc1_Click"
+                    Margin="10"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    BorderBrush="#1E90FF"
+                    BorderThickness="2"
+                    Cursor="Hand">
+                <StackPanel>
+                    <TextBlock Text="⛺"
+                               FontSize="45"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="NHÀ MÁI DỐC 1 MÁI"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="btn_MaiDoc2"
+                    Click="btn_MaiDoc2_Click"
+                    Margin="10"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="2"
+                    Cursor="Hand">
+                <StackPanel>
+                    <TextBlock Text="🏘"
+                               FontSize="45"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="NHÀ 2 MÁI DỐC"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="btn_MaiVom"
+                    Click="btn_MaiVom_Click"
+                    Margin="10"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    BorderBrush="#8A2BE2"
+                    BorderThickness="2"
+                    Cursor="Hand">
+                <StackPanel>
+                    <TextBlock Text="🏟"
+                               FontSize="45"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="NHÀ MÁI VÒM"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+        </UniformGrid>
+
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,15,0,0">
+
+            <Button Content="Thoát"
+                    Width="120"
+                    Height="38"
+                    FontSize="15"
+                    Background="#DC3545"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand" />
+        </StackPanel>
+
+    </Grid>
+
+
+</Page>
