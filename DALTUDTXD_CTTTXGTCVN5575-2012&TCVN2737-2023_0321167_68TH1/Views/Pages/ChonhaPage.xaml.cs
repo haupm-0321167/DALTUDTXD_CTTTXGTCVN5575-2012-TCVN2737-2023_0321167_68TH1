@@ -63,6 +63,7 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages
             var main = Application.Current.MainWindow as MainWindow;
             main.MainFrame.Navigate(new ThongsoPage());
         }
+
     }
 }
 
