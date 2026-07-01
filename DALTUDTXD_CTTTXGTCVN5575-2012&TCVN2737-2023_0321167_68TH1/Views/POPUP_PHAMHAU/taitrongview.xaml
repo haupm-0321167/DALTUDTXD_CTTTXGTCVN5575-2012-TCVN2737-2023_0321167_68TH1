@@ -561,6 +561,20 @@
             </Grid>
 
         </ScrollViewer>
+        <Grid Grid.Row="2" Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Button x:Name="btn_Back" Grid.Column="0" Content="◄ Quay lại" Click="btn_Back_Click" Style="{StaticResource PrimaryButtonStyle}" Height="40" Width="130" Background="#64748B" Visibility="Collapsed"/>
+
+
+            <Button x:Name="btn_Next" Grid.Column="2" Content="Tiếp theo ➔" Click="btn_Next_Click" Style="{StaticResource PrimaryButtonStyle}" Height="40" Width="300" Background="#059669"/>
+        </Grid>
+    </Grid>
 
 
 
