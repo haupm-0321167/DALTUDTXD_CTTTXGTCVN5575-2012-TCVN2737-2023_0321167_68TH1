@@ -116,3 +116,56 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_
             canvas.Children.Add(new Line { X1 = midX, Y1 = baselineY, X2 = midX, Y2 = midY, Stroke = Brushes.Gray, StrokeThickness = 0.8, StrokeDashArray = new DoubleCollection { 2, 2 } });
             DrawText(canvas, $"Mmax = {maxM:0.00} kNm", midX - 50, midY + 10, new SolidColorBrush(Color.FromRgb(16, 185, 129)));
         }
+        private void DrawSupport(Canvas cv, double cx, double cy)
+        {
+            Polygon triangle = new Polygon
+            {
+                Fill = Brushes.LightGray,
+                Points = new PointCollection
+                {
+                    new Point(cx, cy),
+                    new Point(cx - 8, cy + 12),
+                    new Point(cx + 8, cy + 12)
+                }
+            };
+            cv.Children.Add(triangle);
+        }
+
+        private void DrawText(Canvas cv, string text, double x, double y, Brush color)
+        {
+            TextBlock tb = new TextBlock { Text = text, Foreground = color, FontSize = 10, FontWeight = FontWeights.Bold };
+            Canvas.SetLeft(tb, x);
+            Canvas.SetTop(tb, y);
+            cv.Children.Add(tb);
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(txtL.Text, out double newL) && newL > 0 &&
+                double.TryParse(txtQ.Text, out double newQ) && newQ >= 0)
+            {
+                L = newL;
+                q = newQ;
+                Draw();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập giá trị hợp lệ!");
+            }
+        }
+
+        private void Canvas_Click(object sender, MouseButtonEventArgs e)
+        {
+            double w = canvas.ActualWidth;
+            if (w == 0) w = 780;
+            double graphW = w - 100;
+            scaleX = graphW / L;
+
+            double x = (e.GetPosition(canvas).X - 50) / scaleX;
+            if (x < 0 || x > L) return;
+
+            double M = q * x * (L - x) / 2;
+            txtStatus.Text = $"Tọa độ x = {x:0.00} m | Moment M = {M:0.00} kNm";
+        }
+    }
+}
