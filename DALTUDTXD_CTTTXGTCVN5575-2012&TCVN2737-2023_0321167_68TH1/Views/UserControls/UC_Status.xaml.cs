@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1
+namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UC_Status.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UC_Status : UserControl
     {
-        public MainWindow()
+        public UC_Status()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Views.Pages.ChonhaPage());
         }
     }
 }

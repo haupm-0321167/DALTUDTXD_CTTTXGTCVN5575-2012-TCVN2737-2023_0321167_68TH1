@@ -1,0 +1,34 @@
+<UserControl x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls.UC_Ribbon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls"
+                      mc:Ignorable="d" 
+         d:DesignHeight="140" d:DesignWidth="900">
+    <Grid>
+        <Ribbon Grid.Row="0" SelectedIndex="0" Background="#FFF1F5F9">
+
+
+            <RibbonTab Header="Thiết kế &amp; Phân tích">
+                <RibbonGroup Header="Dự án &amp; Kết nối">
+                    <RibbonButton x:Name="rbt_Mo" Label="Mở dự án" SmallImageSource="/Assets/Icons/open.png"/>
+                    <RibbonButton x:Name="rbt_Luu" Label="Lưu lại" SmallImageSource="/Assets/Icons/save.png"/>
+                    <RibbonButton x:Name="rbt_KetNoiEtabs" Label="Kết nối Etabs" Click="rbt_KetNoiEtabs_Click" SmallImageSource="/Assets/Icons/Connect.png"/>
+                </RibbonGroup>
+
+                <RibbonGroup Header="Thông số &amp; Tải trọng">
+                    <RibbonButton x:Name="rbt_Thongsodauvao" Label="Thông số xà gồ" LargeImageSource="/Assets/Icons/thongsodauvao.png"/>
+                    <RibbonButton x:Name="rbt_Khaibaotaitrong" Label="Nhập tải trọng" Click="rbt_Khaibaotaitrong_Click" SmallImageSource="/Assets/Icons/khaibaotaitrong.png"/>
+                    <RibbonButton x:Name="rbt_TohopTaitrong" Label="Tổ hợp tải trọng" Click="rbt_TohopTaitrong_Click" SmallImageSource="/Assets/Icons/khaibao.png"/>
+                </RibbonGroup>
+
+                <RibbonGroup Header="Kiểm tra &amp; Báo cáo">
+                    <RibbonButton Label="Kiểm tra bền" x:Name="rbt_KTB" Click="rbt_Kiemtraben_Click" LargeImageSource="/Assets/Icons/kiemtradoben.png" />
+                    <RibbonButton Label="Kiểm tra độ võng" x:Name="rbt_KTDV" Click="rbt_Kiemtradovong_Click" LargeImageSource="/Assets/Icons/kiemtradovong.png" />
+                    <RibbonButton Label="Xuất báo cáo Excel" x:Name="rbt_XuatExcel" Click="rbt_XuatExcel_Click" LargeImageSource="/Assets/Icons/xuatexcel.png" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+    </Grid>
+</UserControl>
