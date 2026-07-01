@@ -225,7 +225,93 @@
                             </StackPanel>
                         </Border>
 
-                    </Grid>
+                        <Border Grid.Column="2" Style="{StaticResource GroupCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="THÔNG SỐ THIẾT KẾ" FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,12"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Áp lực gió W0:" Grid.Row="0" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Width="120" x:Name="txt_aplucgio" Style="{StaticResource FormTextBoxStyle}"/>
+
+
+
+                                    <TextBlock Text="Cao độ Ze (m):" Grid.Row="1" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Width="120" x:Name="txt_ze" Style="{StaticResource FormTextBoxStyle}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="Bước xà gồ (m):" Grid.Row="2" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Width="120" x:Name="txt_buocxago" Style="{StaticResource FormTextBoxStyle}" Text=""/>
+
+                                    <TextBlock Text="Nhịp xà gồ (m):" Grid.Row="3" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Width="120" x:Name="txt_NhipXaGo" Style="{StaticResource FormTextBoxStyle}"/>
+
+                                    <TextBlock Text="Độ dốc mái:" Grid.Row="4" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="4" Grid.Column="1" Width="120" x:Name="txt_DoDocMai" Style="{StaticResource FormTextBoxStyle}"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="4" Style="{StaticResource GroupCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="THÔNG SỐ MÁI &amp; TẢI" FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,12"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <TextBlock Text="Số ty treo xà gồ:" Grid.Row="0" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Width="120" x:Name="txt_SoTyTreoXaGoMai" Style="{StaticResource FormTextBoxStyle}"/>
+
+                                    <TextBlock Text="Vùng tính gió:" Grid.Row="1" Style="{StaticResource FormLabelStyle}"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="1" Width="120" x:Name="cbb_vunggio" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="Tinhc_Auto">
+                                        <ComboBoxItem Content="Vùng A"/>
+                                        <ComboBoxItem Content="Vùng B"/>
+                                        <ComboBoxItem Content="Vùng C"/>
+                                        <ComboBoxItem Content="Vùng F"/>
+                                        <ComboBoxItem Content="Vùng G"/>
+                                        <ComboBoxItem Content="Vùng H"/>
+                                        <ComboBoxItem Content="Vùng I"/>
+                                        <ComboBoxItem Content="Vùng J"/>
+                                        <ComboBoxItem Content="-"/>
+                                    </ComboBox>
+
+                                    <TextBlock Text="Cấp công trình:" Grid.Row="2" Style="{StaticResource FormLabelStyle}"/>
+                                    <ComboBox Grid.Row="2" 
+                                          Grid.Column="1" 
+                                          Width="120"
+                                          x:Name="cbb_capcongtrinh" 
+                                          Style="{StaticResource FormComboBoxStyle}" SelectionChanged="TinhgammaT_Auto">
+                                        <ComboBoxItem Content="Công trình bình thường"/>
+                                        <ComboBoxItem Content="Công trình quan trọng"/>
+                                        <ComboBoxItem Content="Công trình đặc biệt"/>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    
+
+                </Grid>
+                    
 
 
     
