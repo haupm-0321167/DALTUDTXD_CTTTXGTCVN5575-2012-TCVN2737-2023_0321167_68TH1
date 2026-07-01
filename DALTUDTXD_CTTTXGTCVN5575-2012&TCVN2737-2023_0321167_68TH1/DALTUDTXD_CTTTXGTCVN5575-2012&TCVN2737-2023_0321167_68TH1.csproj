@@ -249,6 +249,7 @@
     <None Include="Data\diadiem.json" />
     <None Include="Data\xagocnguoi.json" />
     <None Include="Data\xagocnong.json" />
+    <None Include="Data\xagohop.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
