@@ -92,3 +92,30 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Models
 
 
     }
+    public class XaGo
+    {
+        public string SoHieu { get; set; }
+
+        public double H { get; set; }
+
+        public double B { get; set; }
+
+        public double C { get; set; }
+
+        public double t { get; set; }
+
+        public double B1 { get; set; }
+        public double D { get; set; }
+
+        public double S { get; set; }      // Diện tích
+        public double P { get; set; }      // Trọng lượng
+
+        public double Jx { get; set; }
+        public double Jy { get; set; }
+
+        public double Wx { get; set; }
+        public double Wy { get; set; }
+
+
+    }
+}
