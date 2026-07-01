@@ -276,6 +276,27 @@ Stretch="UniformToFill"/>
                 </Grid>
             </Border>
         </Grid>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="240"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Style="{StaticResource GroupCardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="BẢN VẼ MẶT CẮT KỸ THUẬT (2D CAD PREVIEW)" FontSize="16" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,10"/>
+
+                    <Border Grid.Row="1" CornerRadius="8" ClipToBounds="True" Background="#181824" BorderThickness="1" BorderBrush="#CBD5E1">
+                        <Canvas x:Name="canvas2D" SizeChanged="canvas2D_SizeChanged"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
 
     </Grid>
 </Page>
