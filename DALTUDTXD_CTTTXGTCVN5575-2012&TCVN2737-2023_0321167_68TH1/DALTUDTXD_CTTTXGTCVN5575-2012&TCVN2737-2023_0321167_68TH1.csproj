@@ -166,6 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\GlobalData.cs" />
     <Compile Include="Views\Pages\ChonhaPage.xaml.cs">
       <DependentUpon>ChonhaPage.xaml</DependentUpon>
     </Compile>
@@ -260,7 +261,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
