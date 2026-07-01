@@ -321,5 +321,186 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_
             TinhZe_Auto(null, null);
 
         }
+        private void TinhgammaT_Auto(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbb_capcongtrinh == null || txt_gammaT == null)
+                return;
+            if (cbb_capcongtrinh.SelectedItem == null)
+                return;
+            string capcongtrinh =
+                  ((ComboBoxItem)cbb_capcongtrinh.SelectedItem)
+                  .Content.ToString();
+            double gammaT = 1.0;
+
+            switch (capcongtrinh)
+            {
+                case "Công trình bình thường":
+                    gammaT = 1.0;
+                    break;
+
+                case "Công trình quan trọng":
+                    gammaT = 1.1;
+                    break;
+
+                case "Công trình đặc biệt":
+                    gammaT = 1.2;
+                    break;
+            }
+            txt_gammaT.Text = gammaT.ToString("0.00");
+        }
+
+        private void btn_tinhtoan_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                try
+                {
+                    double W0 = Convert.ToDouble(txt_aplucgio.Text);
+                    double kZe = Convert.ToDouble(txt_kze.Text);
+                    double c = Convert.ToDouble(txt_c.Text);
+                    Double B = Convert.ToDouble(txt_buocxago.Text);
+                    double Gf = 0.85;
+
+                    double W = Math.Abs(B * W0 * kZe * c * Gf * Convert.ToDouble(txt_gammaT.Text) * 2.1);
+
+                    txt_ketqua.Text = W.ToString("0.##") + " kg/m";
+                }
+                catch
+                {
+                    MessageBox.Show(
+                        "Vui lòng kiểm tra lại các thông số đầu vào!",
+                        "Lỗi",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+                }
+            }
+
+        }
+
+        private void VatLieu_Changed(
+    object sender,
+    SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            if (cb == null || cb.SelectedItem == null)
+                return;
+
+            ComboBoxItem item =
+                  cb.SelectedItem as ComboBoxItem;
+
+            string tenVatLieu =
+                item.Content.ToString();
+
+
+            TaiTrongItem row =
+                (TaiTrongItem)((FrameworkElement)sender).DataContext;
+
+
+            switch (tenVatLieu)
+            {
+                case "Tôn sóng":
+                    row.Gtc = 4.5;
+                    row.N1 = 1.05;
+                    break;
+
+                case "Tôn PU":
+                    row.Gtc = 12;
+                    row.N1 = 1.05;
+                    break;
+
+                case "Trần treo":
+                    row.Gtc = 0;
+                    row.N1 = 1.05;
+                    break;
+                case "Trần thạnh cao":
+                    row.Gtc = 10;
+                    row.N1 = 1.05;
+                    break;
+
+            }
+            row.TenVatLieu = tenVatLieu;
+
+            row.B = Convert.ToDouble(txt_buocxago.Text);
+
+            row.Gtt = row.Gtc * row.N1 * row.B;
+            if (row == dsTinhTai.Last())
+            {
+                dsTinhTai.Add(new TaiTrongItem());
+
+                dgTinhTai.ItemsSource = null;
+                dgTinhTai.ItemsSource = dsTinhTai;
+            }
+            else
+            {
+                dgTinhTai.Items.Refresh();
+            }
+            txt_TongTinhTai.Text =
+        dsTinhTai.Sum(x => x.Gtt)
+                .ToString("0.00");
+
+        }
+        private void LoadTinhTai()
+        {
+            dsTinhTai.Clear();
+
+            dsTinhTai.Add(new TaiTrongItem());
+
+            dgTinhTai.ItemsSource = dsTinhTai;
+        }
+
+
+
+        private void LoaiHoatTai_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            if (cb == null || cb.SelectedItem == null)
+                return;
+
+            ComboBoxItem item =
+                  cb.SelectedItem as ComboBoxItem;
+
+            string LoaiHoatTai =
+                item.Content.ToString();
+
+            TaiTrongItem row =
+                (TaiTrongItem)((FrameworkElement)sender).DataContext;
+
+            switch (LoaiHoatTai)
+            {
+                case "Sửa chữa mái":
+                    row.Ptc = 30;
+                    row.N2 = 1.3;
+                    break;
+
+                case "Bảo Dưỡng":
+                    row.Ptc = 12;
+                    row.N2 = 1.3;
+                    break;
+
+
+            }
+            row.LoaiHoatTai = LoaiHoatTai;
+
+            row.B = Convert.ToDouble(txt_buocxago.Text);
+
+            row.Ptt = row.Ptc * row.N2 * row.B;
+            if (row == dsHoatTai.Last())
+            {
+                dsHoatTai.Add(new TaiTrongItem());
+
+                dgHoatTai.ItemsSource = null;
+                dgHoatTai.ItemsSource = dsHoatTai;
+            }
+            else
+            {
+                dgHoatTai.Items.Refresh();
+            }
+            txt_TongHoatTai.Text =
+        dsHoatTai.Sum(x => x.Ptt)
+                .ToString("0.00");
+
+
+        }
     }
 }
