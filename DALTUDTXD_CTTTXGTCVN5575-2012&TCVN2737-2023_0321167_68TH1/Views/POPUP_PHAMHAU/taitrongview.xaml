@@ -152,7 +152,80 @@
                     </StackPanel>
                 </Grid>
             </Border>
-        </Grid>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <Grid Margin="0,0,12,0">
+
+                <Grid x:Name="grid_Step1" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#2A4B3D" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+                        <TextBlock Text="BƯỚC 1: TÍNH TOÁN TẢI TRỌNG GIÓ TÁC DỤNG LÊN XÀ GỒ"
+                        FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                    </Border>
+
+                    <Grid Grid.Row="1" Margin="0,0,0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Border Grid.Column="0" Style="{StaticResource GroupCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="THÔNG TIN CÔNG TRÌNH" FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,12"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="34"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Tỉnh:" Grid.Row="0" Style="{StaticResource FormLabelStyle}"/>
+                                    <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cbb_tinh" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="cbb_tinh_SelectionChanged"/>
+
+                                    <TextBlock Text="Q.Huyện:" Grid.Row="1" Style="{StaticResource FormLabelStyle}"/>
+                                    <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbb_huyen" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="cbb_huyen_SelectionChanged"/>
+
+                                    <TextBlock Text="X.Phường:" Grid.Row="2" Style="{StaticResource FormLabelStyle}"/>
+                                    <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbb_phuong" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="Cbb_phuong_SelectionChanged"/>
+
+                                    <TextBlock Text="Vùng gió:" Grid.Row="3" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="txt_vunggio" Style="{StaticResource FormTextBoxStyle}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="Địa hình:" Grid.Row="4" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="txt_diahinh" Style="{StaticResource FormTextBoxStyle}" IsReadOnly="True"/>
+
+                                    <TextBlock Text="Loại nhà:" Grid.Row="5" Style="{StaticResource FormLabelStyle}"/>
+                                    <ComboBox Grid.Row="5" Grid.Column="1" x:Name="cbb_loainha" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="TinhZe_Auto">
+                                        <ComboBoxItem Content="Nhà mái bằng"/>
+                                        <ComboBoxItem Content="Nhà 1 mái dốc"/>
+                                        <ComboBoxItem Content="Nhà 2 mái dốc"/>
+                                        <ComboBoxItem Content="Nhà mái vòm"/>
+
+                                    </ComboBox>
+
+                                    <CheckBox Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5,0,0" Content="Có tường chắn mái" IsChecked="True" FontWeight="SemiBold" Foreground="#475569"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
 
 
     
