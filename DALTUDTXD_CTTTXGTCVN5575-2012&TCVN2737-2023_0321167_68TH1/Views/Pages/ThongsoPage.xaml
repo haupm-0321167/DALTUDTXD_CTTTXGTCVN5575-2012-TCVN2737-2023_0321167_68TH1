@@ -209,6 +209,72 @@ Stretch="UniformToFill"/>
                     </Grid>
                 </StackPanel>
             </Border>
+            <Border Grid.Row="1" Style="{StaticResource GroupCardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="DANH SÁCH XÀ GỒ " FontSize="14" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,10"/>
+
+                    <DataGrid x:Name="dgCot"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Background="White"
+                  BorderThickness="1"
+                  BorderBrush="#E2E8F0"
+                  RowBackground="#FFFFFF"
+                  AlternatingRowBackground="#F8FAFC"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  HorizontalGridLinesBrush="#F1F5F9"
+                  RowHeight="30"
+                  FontSize="12">
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                <Setter Property="BorderBrush" Value="Green"/>
+                                <Setter Property="Height" Value="32"/>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="35" ElementStyle="{StaticResource {x:Type TextBlock}}"/>
+                            <DataGridTextColumn Header="H (mm)" Binding="{Binding Height}" Width="*"/>
+                            <DataGridTextColumn Header="B (mm)" Binding="{Binding Width}" Width="*"/>
+                            <DataGridTextColumn Header="C (mm)" Binding="{Binding Lip}" Width="*"/>
+                            <DataGridTextColumn Header="t (mm)" Binding="{Binding Thickness}" Width="*"/>
+                            <DataGridTextColumn Header="B1 (mm)" Binding="{Binding ExtraWidth}" Width="*"/>
+                            <DataGridTextColumn Header="D (mm)" Binding="{Binding Length}" Width="*"/>
+                            <DataGridTextColumn Header="A (cm²)" Binding="{Binding A, StringFormat=0.##}" Width="*"/>
+                            <DataGridTextColumn Header="G (kg/m)" Binding="{Binding G, StringFormat=0.##}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" 
+                Content="Kiểm Tra" 
+                Height="36" 
+                Margin="0,0,0,0"
+                Click="btn_KiemTra_Click"
+                Style="{StaticResource PrimaryButtonStyle}"
+                Background="Green"/>
+                        <Button Grid.Column="2" Content="Xóa Dòng Chọn" Click="btn_xoa_click" Style="{StaticResource DangerButtonStyle}" Height="36"/>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
 
     </Grid>
