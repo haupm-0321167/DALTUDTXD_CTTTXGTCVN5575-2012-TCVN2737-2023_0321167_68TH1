@@ -169,8 +169,8 @@
     <Compile Include="Views\Pages\ChonhaPage.xaml.cs">
       <DependentUpon>ChonhaPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
-      <DependentUpon>ThongsoPage.xaml</DependentUpon>
+    <Compile Include="Views\POPUP_TA\BIEUDODOVONG_VIEW.xaml.cs">
+      <DependentUpon>BIEUDODOVONG_VIEW.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
@@ -194,7 +194,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Pages\ThongsoPage.xaml">
+    <Page Include="Views\POPUP_TA\BIEUDODOVONG_VIEW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
