@@ -65,6 +65,21 @@
     <Compile Include="Views\POPUP_PHAMHAU\Emailview.xaml.cs">
       <DependentUpon>Emailview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\POPUP_PHAMHAU\Errorview.xaml.cs">
+      <DependentUpon>Errorview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_PHAMHAU\HuongDanView.xaml.cs">
+      <DependentUpon>HuongDanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_PHAMHAU\Inputbh.xaml.cs">
+      <DependentUpon>Inputbh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_PHAMHAU\taitrongview.xaml.cs">
+      <DependentUpon>taitrongview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_PHAMHAU\Tohoptaitrongview.xaml.cs">
+      <DependentUpon>Tohoptaitrongview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
     </Compile>
@@ -89,6 +104,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\POPUP_PHAMHAU\Emailview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_PHAMHAU\Errorview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_PHAMHAU\HuongDanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_PHAMHAU\Inputbh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_PHAMHAU\taitrongview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_PHAMHAU\Tohoptaitrongview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

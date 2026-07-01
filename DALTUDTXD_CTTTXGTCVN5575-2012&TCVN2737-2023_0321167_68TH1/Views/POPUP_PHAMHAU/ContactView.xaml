@@ -4,39 +4,110 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_PHAMHAU"
-        mc:Ignorable="d"
-            Title="ContactView" Height="400" Width="400">
+                mc:Ignorable="d"
+        Title="ContactView" Height="400" Width="400">
+    <Window.Resources>
+
+        <Style x:Key="ModernGroupCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#0F172A" Opacity="0.04" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="SidebarLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+
+        <Style x:Key="SidebarValueStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="#1E293B"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="#F1F5F9"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/Images/background.png"
-         Stretch="UniformToFill"/>
+Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên:" Margin="10"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="SĐT:" Margin="10"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Vị trí:" Margin="10"/>
-
-        <ComboBox Grid.Row="0" Grid.Column="1" Margin="5"
-      ItemsSource="{Binding Contacts}"
-      DisplayMemberPath="Ten"
-      SelectedItem="{Binding SelectedContact}"/>
-
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"
-     Text="{Binding SelectedContact.SDT}"
-             IsReadOnly="True"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"
-     Text="{Binding SelectedContact.ViTri}"
-             IsReadOnly="True"/>
 
 
+        <Border Grid.Row="0" Background="#2A4B3D" Height="55" Padding="20,0">
+            <TextBlock Text="THÔNG TIN LIÊN HỆ BAN DỰ ÁN"
+                       Foreground="White"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+        </Border>
+
+
+        <Border Grid.Row="1" Style="{StaticResource ModernGroupCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Người phụ trách:" Style="{StaticResource SidebarLabelStyle}" Margin="5,10"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,10" Height="35"
+                          ItemsSource="{Binding Contacts}"
+                          DisplayMemberPath="Ten"
+                          SelectedItem="{Binding SelectedContact}"
+                          VerticalContentAlignment="Center"
+                          Padding="10,5"/>
+
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Số điện thoại:" Style="{StaticResource SidebarLabelStyle}" Margin="5,10"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5,10"
+                         Text="{Binding SelectedContact.SDT, Mode=OneWay}"
+                         Style="{StaticResource SidebarValueStyle}"/>
+
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Vai trò nhiệm vụ:" Style="{StaticResource SidebarLabelStyle}" Margin="5,10"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="5,10"
+                         Text="{Binding SelectedContact.ViTri, Mode=OneWay}"
+                         Style="{StaticResource SidebarValueStyle}"/>
+
+
+                <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="#ECFDF5" CornerRadius="8" Padding="12" Margin="5,20,5,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="ℹ️" FontSize="16" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Vui lòng liên hệ đúng nhân sự phụ trách để được hỗ trợ nhanh nhất."
+                                   Foreground="#065F46" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
