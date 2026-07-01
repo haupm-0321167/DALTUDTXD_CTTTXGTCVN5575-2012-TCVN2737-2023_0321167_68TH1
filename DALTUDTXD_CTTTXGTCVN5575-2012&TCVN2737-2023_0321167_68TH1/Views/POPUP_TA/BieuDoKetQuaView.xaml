@@ -192,3 +192,24 @@ Stretch="UniformToFill"/>
                     </Grid>
                 </Border>
             </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Border Grid.Row="0" Style="{StaticResource ModernGroupCardStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="BIỂU ĐỒ TOÀN BỘ DẦM LIÊN TỤC (OVERVIEW)" FontSize="12" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,5"/>
+                        <Border Grid.Row="1" CornerRadius="8" ClipToBounds="True" BorderThickness="1" BorderBrush="#CBD5E1">
+                            <Canvas x:Name="canvasOverview" Background="#0F172A" SizeChanged="Canvas_SizeChanged"/>
+                        </Border>
+                    </Grid>
+                </Border>
