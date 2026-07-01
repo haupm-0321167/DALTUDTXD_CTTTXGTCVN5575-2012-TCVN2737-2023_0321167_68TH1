@@ -1,0 +1,122 @@
+﻿<Window x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_TA.BIEUDOLUCCAT_VIEW"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_TA"
+                mc:Ignorable="d"
+        Title="Biểu đồ lực cắt"
+        Height="600" Width="1100"
+        Background="#EEF2F7">
+
+    <Window.Resources>
+
+        <Style x:Key="ModernGroupCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#0F172A" Opacity="0.04" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="FormTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="Background" Value="#F8FAFC"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#059669"/>
+                                <Setter TargetName="border" Property="Background" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#059669"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8" Padding="15,8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Value="#047857" Property="Background"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Background="#2A4B3D" Height="50" Padding="15,0">
+            <TextBlock x:Name="txtTitle"
+                       Text="BIỂU ĐỒ LỰC CẮT XÀ GỒ"
+                       Foreground="White"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+        </Border>
+
+
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border Grid.Column="0" Style="{StaticResource ModernGroupCardStyle}">
+                <StackPanel>
+                    <TextBlock Text="THÔNG SỐ PHÂN TÍCH" FontSize="14" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Chiều dài nhịp L (m):" Foreground="#64748B" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtL" Text="6.00" Style="{StaticResource FormTextBoxStyle}" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Tải trọng phân bố q (kN/m):" Foreground="#64748B" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtQ" Text="10.00" Style="{StaticResource FormTextBoxStyle}" Margin="0,0,0,20"/>
+
+                    <Button Content="CẬP NHẬT BIỂU ĐỒ"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="Update_Click"/>
+                </StackPanel>
+            </Border>
+
