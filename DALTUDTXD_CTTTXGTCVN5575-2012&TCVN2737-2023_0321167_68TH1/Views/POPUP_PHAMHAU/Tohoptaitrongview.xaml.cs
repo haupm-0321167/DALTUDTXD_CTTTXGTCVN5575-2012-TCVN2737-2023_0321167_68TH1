@@ -222,5 +222,196 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_
                 dgnoiluctinhtoan.Items.Refresh();
             }
         }
+        private void TruonghopTC_Changed(
+    object sender,
+    SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            if (cb == null || cb.SelectedItem == null)
+                return;
+
+            ComboBoxItem item =
+                cb.SelectedItem as ComboBoxItem;
+
+            string truonghop =
+                item.Content.ToString();
+
+            ToHopTaiTrong row =
+                (ToHopTaiTrong)
+                ((FrameworkElement)sender).DataContext;
+
+            double TT = GlobalData.TongTinhTai;
+            double HT = GlobalData.TongHoatTai;
+            double W = GlobalData.TaiTrongGio;
+            double B1 = GlobalData.B1;
+
+            double A = GlobalData.A;
+            double G = GlobalData.G;
+            double Ix = GlobalData.Jx;
+            double Iy = GlobalData.Jy;
+            double Wx = GlobalData.Wx;
+            double Wy = GlobalData.Wy;
+            double TG = GlobalData.TyGiang;
+
+
+            double alpha =
+                Math.Atan(GlobalData.DoDocMai / 100.0);
+
+            double L = GlobalData.NhipXaGo;
+
+            double n1 = 1.05;
+            double n2 = 1.30;
+            double n3 = 2.10;
+
+            if (truonghop.Contains("TH1: 1*TT tiêu chuẩn + 1*HT tiêu chuẩn"))
+            {
+
+
+                row.Ptcx = (G + HT / n2 + TT / n1) * Math.Sin(alpha);
+                row.Ptcy = (G + HT / n2 + TT / n1) * Math.Cos(alpha);
+                GlobalData.Ptcx_CVV1 = row.Ptcx;
+                GlobalData.Ptcy_CVV1 = row.Ptcy;
+                if (B1 == 0)
+                {
+                    row.Mtcx = row.Ptcy * L * L / 8.0;
+                    if (TG == 0)
+                    {
+                        row.Mtcy = row.Ptcx * L * L / 8.0;
+                    }
+                    else
+                        if (TG == 1)
+                        {
+                            row.Mtcy = row.Ptcx * L * L / 32.0;
+                        }
+                        else
+                            if (TG == 2)
+                            {
+                                row.Mtcy = row.Ptcx * L * L / 40.0;
+                            }
+                            else row.Mtcy = row.Ptcx * L * L / (4000 / 17.85);
+
+                }
+                else
+                {
+                    row.Mtcx = row.Ptcy * L * L / 11.0;
+                    if (TG == 0)
+                    {
+                        row.Mtcy = row.Ptcx * L * L / 11.0;
+                    }
+                    else
+                        if (TG == 1)
+                        {
+                            row.Mtcy = row.Ptcx * L * L / 44.0;
+                        }
+                        else
+                            if (TG == 2)
+                            {
+                                row.Mtcy = row.Ptcx * L * L / 99.0;
+                            }
+                            else
+                                if (TG == 3)
+                                {
+                                    row.Mtcy = row.Ptcx * L * L / 176.0;
+                                }
+                                else row.Mtcy = row.Ptcx * L * L / 275;
+
+                }
+
+
+            }
+
+            else if (truonghop.Contains("TH2: 1*TT tiêu chuẩn + 1*W tiêu chuẩn"))
+            {
+                row.Ptcx = (-G + W / n3 - TT / n1) * Math.Sin(alpha);
+                row.Ptcy = (-G + W / n3 - TT / n1) * Math.Cos(alpha);
+                GlobalData.Ptcx_CVV2 = row.Ptcx;
+                GlobalData.Ptcy_CVV2 = row.Ptcy;
+                if (B1 == 0)
+                {
+                    row.Mtcx = row.Ptcy * L * L / 8.0;
+                    if (TG == 0)
+                    {
+                        row.Mtcy = row.Ptcx * L * L / 8.0;
+                    }
+                    else
+                        if (TG == 1)
+                        {
+                            row.Mtcy = row.Ptcx * L * L / 32.0;
+                        }
+                        else
+                            if (TG == 2)
+                            {
+                                row.Mtcy = row.Ptcx * L * L / 40.0;
+                            }
+                            else row.Mtcy = row.Ptcx * L * L / (4000 / 17.85);
+
+                }
+                else
+                {
+                    row.Mtcx = row.Ptcy * L * L / 11.0;
+                    if (TG == 0)
+                    {
+                        row.Mtcy = row.Ptcx * L * L / 11.0;
+                    }
+                    else
+                        if (TG == 1)
+                        {
+                            row.Mtcy = row.Ptcx * L * L / 44.0;
+                        }
+                        else
+                            if (TG == 2)
+                            {
+                                row.Mtcy = row.Ptcx * L * L / 99.0;
+                            }
+                            else
+                                if (TG == 3)
+                                {
+                                    row.Mtcy = row.Ptcx * L * L / 176.0;
+                                }
+                                else row.Mtcy = row.Ptcx * L * L / 275;
+
+                }
+            }
+
+            row.Truonghop = truonghop;
+
+            if (row == dsTieuChuan.Last())
+            {
+                dsTieuChuan.Add(new ToHopTaiTrong());
+
+                dgnoiluctieuchuan.ItemsSource = null;
+                dgnoiluctieuchuan.ItemsSource = dsTieuChuan;
+            }
+            else
+            {
+                dgnoiluctieuchuan.Items.Refresh();
+            }
+        }
+
+        private void btn_Luu_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                try
+                {
+                    GlobalData.DsNoiLucTinhToan = dsTinhToan
+                        .Where(x => !string.IsNullOrEmpty(x.Truonghop))
+                        .ToList();
+
+                    GlobalData.DsNoiLucTieuChuan = dsTieuChuan
+                        .Where(x => !string.IsNullOrEmpty(x.Truonghop))
+                        .ToList();
+
+                    MessageBox.Show("Đã lưu tất cả các tổ hợp tải trọng!");
+
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            this.Close();
+        }
     }
 }
