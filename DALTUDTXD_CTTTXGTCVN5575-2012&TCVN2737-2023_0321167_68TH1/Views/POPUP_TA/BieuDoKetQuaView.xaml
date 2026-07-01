@@ -173,3 +173,22 @@ Stretch="UniformToFill"/>
                     </StackPanel>
                 </Border>
 
+                <Border Grid.Row="1" Style="{StaticResource ModernGroupCardStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="BẢNG TỌA ĐỘ GIÁ TRỊ CHI TIẾT" FontSize="12" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,8"/>
+
+                        <DataGrid Grid.Row="1" x:Name="dgValues" AutoGenerateColumns="False" IsReadOnly="True" 
+                      HeadersVisibility="Column" GridLinesVisibility="Horizontal" BorderThickness="0"
+                      Background="White" RowHeaderWidth="0" SelectionChanged="dgValues_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Tọa độ X (mm)" Binding="{Binding X_mm}" Width="*"/>
+                                <DataGridTextColumn x:Name="colValueHeader" Header="Giá trị" Binding="{Binding ValueFormatted}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Grid>
