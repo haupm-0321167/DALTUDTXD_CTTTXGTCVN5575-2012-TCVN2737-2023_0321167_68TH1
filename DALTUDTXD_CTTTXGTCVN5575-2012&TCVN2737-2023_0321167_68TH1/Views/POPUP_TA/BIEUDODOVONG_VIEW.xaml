@@ -74,3 +74,69 @@
             </Setter>
         </Style>
     </Window.Resources>
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Background="#2A4B3D" Height="50" Padding="15,0">
+            <TextBlock x:Name="txtTitle"
+                       Text="BIỂU ĐỒ ĐỘ VÕNG XÀ GỒ"
+                       Foreground="White"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border Grid.Column="0" Style="{StaticResource ModernGroupCardStyle}">
+                <StackPanel>
+                    <TextBlock Text="THÔNG SỐ PHÂN TÍCH" FontSize="14" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Chiều dài nhịp L (m):" Foreground="#64748B" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtL" Text="6.00" Style="{StaticResource FormTextBoxStyle}" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Tải trọng phân bố q (kN/m):" Foreground="#64748B" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtQ" Text="10.00" Style="{StaticResource FormTextBoxStyle}" Margin="0,0,0,20"/>
+
+                    <Button Content="CẬP NHẬT BIỂU ĐỒ"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="Update_Click"/>
+                </StackPanel>
+            </Border>
+
+
+            <Border Grid.Column="1" Style="{StaticResource ModernGroupCardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="ĐỒ THỊ ĐỘ VÕNG ĐÀN HỒI (f)" FontSize="13" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,10"/>
+                    <Border Grid.Row="1" CornerRadius="8" ClipToBounds="True" BorderThickness="1" BorderBrush="#CBD5E1">
+                        <Canvas x:Name="canvas" Background="#0F172A" MouseLeftButtonDown="Canvas_Click"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <Border Grid.Row="2" Background="#2A4B3D" Height="35" Padding="15,0">
+            <TextBlock x:Name="txtStatus" Foreground="#34D399" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="12" Text="Nhấp chuột vào đồ thị để tra cứu giá trị độ võng tại tọa độ x"/>
+        </Border>
+    </Grid>
+</Window>
