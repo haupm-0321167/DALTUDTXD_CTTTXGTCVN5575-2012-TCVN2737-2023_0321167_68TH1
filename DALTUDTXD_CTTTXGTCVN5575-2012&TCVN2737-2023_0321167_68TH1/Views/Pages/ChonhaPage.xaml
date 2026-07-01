@@ -76,4 +76,65 @@
                            Margin="0,10,0,0"/>
                 </StackPanel>
             </Button>
-            
+
+            <Button x:Name="btn_MaiDoc2"
+                    Click="btn_MaiDoc2_Click"
+                    Margin="10"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    BorderBrush="#FF8C00"
+                    BorderThickness="2"
+                    Cursor="Hand">
+                <StackPanel>
+                    <TextBlock Text="🏘"
+                               FontSize="45"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="NHÀ 2 MÁI DỐC"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="btn_MaiVom"
+                    Click="btn_MaiVom_Click"
+                    Margin="10"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="White"
+                    BorderBrush="#8A2BE2"
+                    BorderThickness="2"
+                    Cursor="Hand">
+                <StackPanel>
+                    <TextBlock Text="🏟"
+                               FontSize="45"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock Text="NHÀ MÁI VÒM"
+                               HorizontalAlignment="Center"
+                               Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+        </UniformGrid>
+
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,15,0,0">
+
+            <Button Content="Thoát"
+                    Width="120"
+                    Height="38"
+                    FontSize="15"
+                    Background="#DC3545"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand" />
+        </StackPanel>
+
+    </Grid>
+
+
+</Page>
