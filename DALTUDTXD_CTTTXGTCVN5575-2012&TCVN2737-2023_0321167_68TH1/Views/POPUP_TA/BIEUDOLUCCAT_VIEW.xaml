@@ -119,4 +119,24 @@ Stretch="UniformToFill"/>
                             Click="Update_Click"/>
                 </StackPanel>
             </Border>
+            <Border Grid.Column="1" Style="{StaticResource ModernGroupCardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="ĐỒ THỊ NỘI LỰC LỰC CẮT (Q)" FontSize="13" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,10"/>
+                    <Border Grid.Row="1" CornerRadius="8" ClipToBounds="True" BorderThickness="1" BorderBrush="#CBD5E1">
+                        <Canvas x:Name="canvas" Background="#0F172A" MouseLeftButtonDown="Canvas_Click"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <Border Grid.Row="2" Background="#2A4B3D" Height="35" Padding="15,0">
+            <TextBlock x:Name="txtStatus" Foreground="#34D399" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="12" Text="Nhấp chuột vào đồ thị để tra cứu giá trị lực cắt tại tọa độ x"/>
+        </Border>
+    </Grid>
+</Window>
 
