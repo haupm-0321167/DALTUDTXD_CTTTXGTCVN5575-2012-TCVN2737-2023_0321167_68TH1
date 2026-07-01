@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Diadiem.cs" />
     <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
       <DependentUpon>ThongsoPage.xaml</DependentUpon>
