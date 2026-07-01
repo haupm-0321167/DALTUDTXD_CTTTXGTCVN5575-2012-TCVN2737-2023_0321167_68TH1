@@ -99,7 +99,61 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
+    
+        <Grid Background="#F8FAFC" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
 
-    </Grid>
+                <RowDefinition Height="*"/>
+
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+
+            <Border Grid.Row="0" Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="15,12" Margin="0,0,0,15">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="step1Circle" Width="28" Height="28" CornerRadius="14" Background="#059669" VerticalAlignment="Center">
+                            <TextBlock x:Name="step1CircleText" Text="1" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                        </Border>
+                        <TextBlock x:Name="step1Text" Text=" TẢI TRỌNG GIÓ" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#065F46" Margin="8,0,0,0"/>
+                    </StackPanel>
+
+
+                    <Border Grid.Column="1" Height="2" Background="#E2E8F0" VerticalAlignment="Center" Margin="10,0"/>
+
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="step2Circle" Width="28" Height="28" CornerRadius="14" Background="#E2E8F0" VerticalAlignment="Center">
+                            <TextBlock x:Name="step2CircleText" Text="2" Foreground="#64748B" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                        </Border>
+                        <TextBlock x:Name="step2Text" Text=" TĨNH TẢI MÁI" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#64748B" Margin="8,0,0,0"/>
+                    </StackPanel>
+
+
+                    <Border Grid.Column="3" Height="2" Background="#E2E8F0" VerticalAlignment="Center" Margin="10,0"/>
+
+
+                    <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="step3Circle" Width="28" Height="28" CornerRadius="14" Background="#E2E8F0" VerticalAlignment="Center">
+                            <TextBlock x:Name="step3CircleText" Text="3" Foreground="#64748B" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                        </Border>
+                        <TextBlock x:Name="step3Text" Text=" HOẠT TẢI MÁI" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="#64748B" Margin="8,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+    
 </Window>
