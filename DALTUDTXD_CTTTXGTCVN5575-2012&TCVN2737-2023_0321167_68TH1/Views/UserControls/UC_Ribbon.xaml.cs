@@ -1,5 +1,4 @@
-﻿using DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_PHAMHAU;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls
@@ -20,23 +20,9 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserCo
     /// </summary>
     public partial class UC_Ribbon : UserControl
     {
-        private Frame Mainframe;
-        public UC_Ribbon(Frame mainFrame)
+        public UC_Ribbon()
         {
             InitializeComponent();
-            this.Mainframe = mainFrame;
-        }
-        private void rbt_Lienhe_Click(object sender, RoutedEventArgs e)
-        {
-            ContactView MV = new ContactView();
-            MV.Show();
-
-        }
-        private void rbt_Email_Click(object sender, RoutedEventArgs e)
-        {
-            Emailview emailview = new Emailview();
-            emailview.Show();
-
         }
     }
 }

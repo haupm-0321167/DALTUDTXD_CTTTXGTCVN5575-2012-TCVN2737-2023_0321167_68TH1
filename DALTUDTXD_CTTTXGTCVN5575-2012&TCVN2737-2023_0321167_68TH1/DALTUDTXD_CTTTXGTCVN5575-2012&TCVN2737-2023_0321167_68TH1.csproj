@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15816300-8B89-42BB-A9C5-7AE60CEE0953}</ProjectGuid>
+    <ProjectGuid>{B845F238-4BED-BA74-0604-1FA7015063F7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1</RootNamespace>
     <AssemblyName>DALTUDTXD_CTTTXGTCVN5575-2012&amp;TCVN2737-2023_0321167_68TH1</AssemblyName>

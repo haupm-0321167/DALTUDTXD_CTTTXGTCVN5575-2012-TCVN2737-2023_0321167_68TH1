@@ -1,16 +1,17 @@
 ﻿<UserControl x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls.UC_Ribbon"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls"
-        mc:Ignorable="d"
-         Height="150" Width="800">
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls"
+                      mc:Ignorable="d" 
+         d:DesignHeight="140" d:DesignWidth="900">
     <Grid>
         <Ribbon Grid.Row="0" SelectedIndex="0" Background="#FFF1F5F9">
 
 
             
+
             <RibbonTab Header="Hiển thị &amp; Trợ giúp">
                 <RibbonGroup Header="Đồ họa trực quan">
                     <RibbonButton Label="Chế độ 2D" Click="Btn2D_Click" SmallImageSource="/Assets/Icons/2D.png" />
