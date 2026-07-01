@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Diadiem.cs" />
+    <Compile Include="Models\TaiTrongItem.cs" />
     <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
       <DependentUpon>ThongsoPage.xaml</DependentUpon>
     </Compile>
