@@ -213,3 +213,47 @@ Stretch="UniformToFill"/>
                         </Border>
                     </Grid>
                 </Border>
+                <Border Grid.Row="1" Style="{StaticResource ModernGroupCardStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" x:Name="lblDetailTitle" Text="BIỂU ĐỒ CHI TIẾT NHỊP 1" FontSize="13" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,5"/>
+                        <Border Grid.Row="1" CornerRadius="8" ClipToBounds="True" BorderThickness="1" BorderBrush="#CBD5E1">
+                            <Canvas x:Name="canvasDetail" Background="#0F172A" SizeChanged="Canvas_SizeChanged" MouseLeftButtonDown="canvasDetail_MouseLeftButtonDown"/>
+                        </Border>
+                    </Grid>
+                </Border>
+
+
+                <Border Grid.Row="2" Style="{StaticResource ModernGroupCardStyle}" Height="60" Margin="6,3,6,6">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="0 mm" FontWeight="SemiBold" Foreground="#64748B" VerticalAlignment="Center" Margin="5,0,10,0"/>
+                        <Slider Grid.Column="1" x:Name="sliderX" Minimum="0" Maximum="7000" Value="3500" 
+                                VerticalAlignment="Center" ValueChanged="sliderX_ValueChanged"/>
+                        <TextBlock Grid.Column="2" x:Name="lblMaxSpanX" Text="7000 mm" FontWeight="SemiBold" Foreground="#64748B" VerticalAlignment="Center" Margin="10,0,5,0"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#2A4B3D" Height="40" Padding="20,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" x:Name="lblCoordinateInfo" Text="Tọa độ x = 3500 mm | Giá trị uốn My = 0.00 kNm" 
+                           Foreground="#34D399" FontWeight="Bold" VerticalAlignment="Center" FontSize="13"/>
+                <TextBlock Grid.Column="1" Text="Nhấp chuột trên đồ thị hoặc kéo Slider để tra cứu" 
+                           Foreground="#94A3B8" FontSize="11" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
