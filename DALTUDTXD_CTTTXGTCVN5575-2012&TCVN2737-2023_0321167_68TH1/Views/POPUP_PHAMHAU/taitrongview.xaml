@@ -371,6 +371,101 @@
 
 
                 </Grid>
+                <Grid x:Name="grid_Step2" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#2A4B3D" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+                        <TextBlock Text="BƯỚC 2: KHAI BÁO TĨNH TẢI TÁC DỤNG LÊN XÀ GỒ"
+                   FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                    </Border>
+
+
+                    <Border Grid.Row="1" Style="{StaticResource GroupCardStyle}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="TĨNH TẢI TÁC DỤNG (DEAD LOAD - TT)" FontWeight="Bold" FontSize="14" Foreground="#065F46" Margin="0,0,0,10"/>
+
+                            <DataGrid x:Name="dgTinhTai"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      Background="White"
+                      BorderThickness="1"
+                      BorderBrush="#E2E8F0"
+                      RowBackground="#FFFFFF"
+                      AlternatingRowBackground="#F8FAFC"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#F1F5F9"
+                      RowHeight="32">
+                                <DataGrid.Resources>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background" Value="#10B981"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                        <Setter Property="BorderBrush" Value="#059669"/>
+                                        <Setter Property="Height" Value="28"/>
+                                    </Style>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Vật liệu mái" Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding TenVatLieu}" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="SemiBold"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <ComboBox SelectedValue="{Binding TenVatLieu}" SelectionChanged="VatLieu_Changed">
+                                                    <ComboBoxItem>Tôn sóng</ComboBoxItem>
+                                                    <ComboBoxItem>Tôn PU</ComboBoxItem>
+                                                    <ComboBoxItem>Trần treo</ComboBoxItem>
+                                                    <ComboBoxItem>Trần thạch cao</ComboBoxItem>
+
+                                                </ComboBox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTextColumn Header="gtc (kg/m²)" Binding="{Binding Gtc}" Width="100"/>
+                                    <DataGridTextColumn Header="Hệ số n1" Binding="{Binding N1}" Width="100"/>
+                                    <DataGridTextColumn Header="Bước B (m)" Binding="{Binding B}" Width="100"/>
+                                    <DataGridTextColumn Header="Gtt (kg/m)" Binding="{Binding Gtt, StringFormat=0.##}" Width="120" IsReadOnly="True">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="Foreground" Value="#065F46"/>
+                                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                                <Setter Property="Margin" Value="0,0,5,0"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+
+
+                    <Border Grid.Row="2" Style="{StaticResource GroupCardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="TỔNG TĨNH TẢI TÍNH TOÁN (kg/m):" FontWeight="Bold" Foreground="#475569" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                            <TextBox Grid.Column="1" x:Name="txt_TongTinhTai" FontWeight="ExtraBold" Foreground="#065F46" Background="#ECFDF5" Height="32" TextAlignment="Center" IsReadOnly="True" Style="{StaticResource FormTextBoxStyle}"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+
             </Grid>
 
 
