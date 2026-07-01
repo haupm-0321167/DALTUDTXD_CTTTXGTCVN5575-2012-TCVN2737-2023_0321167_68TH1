@@ -308,11 +308,72 @@
                                 </Grid>
                             </StackPanel>
                         </Border>
-                    
+                    </Grid>
+                    <Border Grid.Row="2" Style="{StaticResource GroupCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="HỆ SỐ TÍNH TOÁN TRUNG GIAN" FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,10"/>
+                            <UniformGrid Columns="5">
+                                <StackPanel Margin="0,0,10,0">
+                                    <TextBlock Text="k(Ze)" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox x:Name="txt_kze" Style="{StaticResource FormTextBoxStyle}"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,0,10,0">
+                                    <TextBlock Text="Hệ số khí động c" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox x:Name="txt_c" Style="{StaticResource FormTextBoxStyle}"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,0,10,0">
+                                    <TextBlock Text="Hệ số tin cậy γT" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox x:Name="txt_gammaT" Style="{StaticResource FormTextBoxStyle}"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,0,10,0">
+                                    <TextBlock Text="Hệ số Gf" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Style="{StaticResource FormTextBoxStyle}" Text="0.850"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,0,0,0">
+                                    <TextBlock Text="Hệ số γf" Style="{StaticResource FormLabelStyle}"/>
+                                    <TextBox Style="{StaticResource FormTextBoxStyle}" Text="2.1"/>
+                                </StackPanel>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+
+
+                    <Border Grid.Row="3" Style="{StaticResource GroupCardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+
+                                <Border Background="#ECFDF5" CornerRadius="6" Padding="12" Margin="0,0,0,8">
+                                    <TextBlock FontSize="12" FontWeight="Bold" Foreground="#065F46" HorizontalAlignment="Center"
+                           Text="Công thức tính: W = B × W0 × k(Ze) × c × Gf × γT × γf (với γf = 2.1)"/>
+                                </Border>
+
+
+                                <Border Background="#F0FDF4" CornerRadius="8" Padding="12" BorderBrush="#DCFCE7" BorderThickness="1">
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run Text="Tải Trọng Gió Tính Toán: " FontSize="14" FontWeight="Bold" Foreground="#15803D"/>
+                    <Run x:Name="txt_ketqua" Text="-- kg/m" FontSize="18" FontWeight="ExtraBold" Foreground="#16A34A"/>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            <Button Grid.Column="1" Content="TÍNH TẢI TRỌNG GIÓ" Click="btn_tinhtoan_Click" Style="{StaticResource PrimaryButtonStyle}" Height="60" Margin="15,0,0,0"/>
+                        </Grid>
+                    </Border>
+
 
                 </Grid>
-                    
+            </Grid>
 
 
-    
+
+
 </Window>
