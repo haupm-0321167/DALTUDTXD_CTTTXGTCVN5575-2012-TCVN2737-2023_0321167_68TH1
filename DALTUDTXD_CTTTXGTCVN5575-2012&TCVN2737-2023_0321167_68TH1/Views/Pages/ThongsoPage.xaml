@@ -296,6 +296,56 @@ Stretch="UniformToFill"/>
                     </Border>
                 </Grid>
             </Border>
+            <Border Grid.Row="1" Style="{StaticResource GroupCardStyle}">
+                <StackPanel>
+                    <TextBlock Text="ĐẶC TRƯNG MẶT CẮT TIẾT DIỆN " FontSize="14" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,8"/>
+
+                    <UniformGrid Columns="3" Rows="2">
+
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Margin="5" Padding="10,8">
+                            <StackPanel>
+                                <TextBlock Text="Diện tích mặt cắt A" FontSize="11" Foreground="#64748B" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="txtProp_A" Text="-- cm²" FontSize="16" Foreground="#1E293B" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Margin="5" Padding="10,8">
+                            <StackPanel>
+                                <TextBlock Text="Trọng lượng G" FontSize="11" Foreground="#64748B" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="txtProp_G" Text="-- kg/m" FontSize="16" Foreground="#1E293B" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Margin="5" Padding="10,8">
+                            <StackPanel>
+                                <TextBlock Text="Mô-men quán tính Ix" FontSize="11" Foreground="#64748B" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="txtProp_Ix" Text="-- cm⁴" FontSize="16" Foreground="#1E293B" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Margin="5" Padding="10,8">
+                            <StackPanel>
+                                <TextBlock Text="Mô-men quán tính Iy" FontSize="11" Foreground="#64748B" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="txtProp_Iy" Text="-- cm⁴" FontSize="16" Foreground="#1E293B" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Margin="5" Padding="10,8">
+                            <StackPanel>
+                                <TextBlock Text="Mô-men kháng uốn Wx" FontSize="11" Foreground="#64748B" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="txtProp_Wx" Text="-- cm³" FontSize="16" Foreground="#1E293B" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Margin="5" Padding="10,8">
+                            <StackPanel>
+                                <TextBlock Text="Mô-men kháng uốn Wy" FontSize="11" Foreground="#64748B" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="txtProp_Wy" Text="-- cm³" FontSize="16" Foreground="#1E293B" FontWeight="Bold" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
         </Grid>
 
     </Grid>
