@@ -50,7 +50,135 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        
+    <Grid Background="#F8FAFC" Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Background="#2A4B3D" CornerRadius="8" Padding="10" Margin="0,0,0,15">
+            <TextBlock Text="TỔ HỢP TẢI TRỌNG VÀ NỘI LỰC XÀ GỒ"
+                   FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+        </Border>
+
+
+        <Border Grid.Row="1" Style="{StaticResource GroupCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="1. TỔ HỢP NỘI LỰC TÍNH TOÁN " FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,8"/>
+                <DataGrid x:Name="dgnoiluctinhtoan"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      Background="White"
+                      BorderThickness="1"
+                      BorderBrush="#E2E8F0"
+                      RowBackground="#FFFFFF"
+                      AlternatingRowBackground="#F8FAFC"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#F1F5F9"
+                      RowHeight="32">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#10B981"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="BorderBrush" Value="#059669"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Tổ hợp tải trọng tính toán" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Truonghop}" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="SemiBold"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox SelectedValue="{Binding Truonghop}" SelectionChanged="Truonghop_Changed">
+                                        <ComboBoxItem>TH1: 1*TT + 1*HT</ComboBoxItem>
+                                        <ComboBoxItem>TH2: 1*TT + 1*W</ComboBoxItem>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Px (kg/m)" Binding="{Binding Px, StringFormat=F2}" Width="95"/>
+                        <DataGridTextColumn Header="Py (kg/m)" Binding="{Binding Py, StringFormat=F2}" Width="95"/>
+                        <DataGridTextColumn Header="Mx (kg.m)" Binding="{Binding Mx, StringFormat=F2}" Width="95"/>
+                        <DataGridTextColumn Header="My (kg.m)" Binding="{Binding My, StringFormat=F2}" Width="95"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Row="2" Style="{StaticResource GroupCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="2. TỔ HỢP NỘI LỰC TIÊU CHUẨN " FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,8"/>
+                <DataGrid x:Name="dgnoiluctieuchuan"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      Background="White"
+                      BorderThickness="1"
+                      BorderBrush="#E2E8F0"
+                      RowBackground="#FFFFFF"
+                      AlternatingRowBackground="#F8FAFC"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#F1F5F9"
+                      RowHeight="32">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#10B981"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="BorderBrush" Value="#059669"/>
+                            <Setter Property="Height" Value="28"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Tổ hợp tải trọng tiêu chuẩn" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Truonghop}" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="SemiBold"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox SelectedValue="{Binding Truonghop}" SelectionChanged="TruonghopTC_Changed">
+                                        <ComboBoxItem>TH1: 1*TT tiêu chuẩn + 1*HT tiêu chuẩn</ComboBoxItem>
+                                        <ComboBoxItem>TH2: 1*TT tiêu chuẩn + 1*W tiêu chuẩn</ComboBoxItem>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Ptcx (kg/m)" Binding="{Binding Ptcx, StringFormat=F2}" Width="95"/>
+                        <DataGridTextColumn Header="Ptcy (kg/m)" Binding="{Binding Ptcy, StringFormat=F2}" Width="95"/>
+                        <DataGridTextColumn Header="Mtcx (kg.m)" Binding="{Binding Mtcx, StringFormat=F2}" Width="95"/>
+                        <DataGridTextColumn Header="Mtcy (kg.m)" Binding="{Binding Mtcy, StringFormat=F2}" Width="95"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+
+        <Button Grid.Row="3" Content="LƯU TỔ HỢP TẢI TRỌNG VÀ PHÂN TÍCH" Click="btn_Luu_Click" Style="{StaticResource PrimaryButtonStyle}" Height="40" Background="#059669" FontSize="13"/>
     </Grid>
 </Window>
