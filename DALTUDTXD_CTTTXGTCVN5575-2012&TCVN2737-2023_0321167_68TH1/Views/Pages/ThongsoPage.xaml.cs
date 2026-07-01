@@ -24,11 +24,43 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.Pages
     /// </summary>
     public partial class ThongsoPage : Page
     {
+        private Dictionary<string, Diadiem> dsTinh =
+            new Dictionary<string, Diadiem>();
+        private List<XaGo> dsXaGo =
+            new List<XaGo>();
+        private XaGo xaGoDangChon;
+        ObservableCollection<XagoModels> danhSach = new ObservableCollection<XagoModels>();
+        int id = 1;
         public ThongsoPage()
         {
             InitializeComponent();
+
+            LoadJson();
+
+            dgCot.ItemsSource = danhSach;
         }
-        
+        private void LoadJson()
+        {
+            try
+            {
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+                string projectPath = Directory.GetParent(baseDir).Parent.Parent.FullName;
+
+                string path = System.IO.Path.Combine(projectPath, "Data", "diadiem.json");
+
+                string json = File.ReadAllText(path);
+
+                dsTinh = JsonConvert.DeserializeObject
+                    <Dictionary<string, Diadiem>>(json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không đọc được file JSON!\n" + ex.Message);
+            }
+        }
+
+
 
     }
 }
