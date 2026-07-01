@@ -172,6 +172,9 @@
     <Compile Include="Views\POPUP_TA\BIEUDODOVONG_VIEW.xaml.cs">
       <DependentUpon>BIEUDODOVONG_VIEW.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\POPUP_TA\BieuDoKetQuaView.xaml.cs">
+      <DependentUpon>BieuDoKetQuaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\POPUP_TA\BIEUDODOVONG_VIEW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_TA\BieuDoKetQuaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
