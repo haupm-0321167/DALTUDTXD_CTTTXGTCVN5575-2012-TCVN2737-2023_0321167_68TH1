@@ -168,6 +168,9 @@
     <Compile Include="Views\Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\POPUP_KA\KiemTraDieuKienBenView.xaml.cs">
+      <DependentUpon>KiemTraDieuKienBenView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -181,6 +184,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_KA\KiemTraDieuKienBenView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,7 +223,6 @@
     <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\POPUP_KA\" />
     <Folder Include="Views\UserControls\" />
   </ItemGroup>
   <ItemGroup>
