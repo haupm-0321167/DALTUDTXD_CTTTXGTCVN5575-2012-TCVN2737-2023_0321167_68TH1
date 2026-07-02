@@ -166,11 +166,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\GlobalData.cs" />
+    <Compile Include="Models\XagoModels.cs" />
     <Compile Include="Views\Pages\ChonhaPage.xaml.cs">
       <DependentUpon>ChonhaPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
-      <DependentUpon>ThongsoPage.xaml</DependentUpon>
+    <Compile Include="Views\POPUP_TA\BIEUDODOVONG_VIEW.xaml.cs">
+      <DependentUpon>BIEUDODOVONG_VIEW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_TA\BieuDoKetQuaView.xaml.cs">
+      <DependentUpon>BieuDoKetQuaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_TA\BIEUDOLUCCAT_VIEW.xaml.cs">
+      <DependentUpon>BIEUDOLUCCAT_VIEW.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\POPUP_TA\BIEUDOMOMENT_VIEW.xaml.cs">
+      <DependentUpon>BIEUDOMOMENT_VIEW.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
@@ -194,7 +205,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Pages\ThongsoPage.xaml">
+    <Page Include="Views\POPUP_TA\BIEUDODOVONG_VIEW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_TA\BieuDoKetQuaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_TA\BIEUDOLUCCAT_VIEW.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_TA\BIEUDOMOMENT_VIEW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,6 +249,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Data\diadiem.json" />
+    <None Include="Data\xagocnguoi.json" />
+    <None Include="Data\xagocnong.json" />
+    <None Include="Data\xagohop.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -236,7 +262,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
