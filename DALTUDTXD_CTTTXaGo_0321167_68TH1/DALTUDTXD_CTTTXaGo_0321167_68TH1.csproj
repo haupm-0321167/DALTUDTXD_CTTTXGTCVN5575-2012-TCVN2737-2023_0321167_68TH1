@@ -167,6 +167,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\KiemTraBen.cs" />
     <Compile Include="Models\KiemTraVong.cs" />
+    <Compile Include="Models\KTDoVong.cs" />
     <Compile Include="Views\Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
