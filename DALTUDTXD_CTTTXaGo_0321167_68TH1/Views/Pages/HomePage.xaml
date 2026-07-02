@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:HelixToolkit="http://helix-toolkit.org/wpf"
       xmlns:local="clr-namespace:DALTUDTXD_CTTTXaGo_0321167_68TH1.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="1150"
@@ -40,6 +41,159 @@
     </Page.Resources>
 
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <HelixToolkit:HelixViewport3D x:Name="view3D" Visibility="Collapsed">
+                <HelixToolkit:SunLight/>
+                <HelixToolkit:HelixViewport3D.Camera>
+                    <PerspectiveCamera Position="200,200,200" LookDirection="-200,-200,-200" UpDirection="0,1,0" FieldOfView="45"/>
+                </HelixToolkit:HelixViewport3D.Camera>
+            </HelixToolkit:HelixViewport3D>
+
+
+            <Border Grid.Column="0" Style="{StaticResource ModernGroupCardStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+
+                        <TextBlock Text="ĐẶC TRƯNG HÌNH HỌC" FontSize="14" FontWeight="Bold" Foreground="#065F46" Margin="0,0,0,10"/>
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="10" Margin="0,0,0,15">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="26"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Loại xà gồ:" Grid.Row="0" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblLoai" Text="--" Grid.Row="0" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Kích thước HxBxCxt:" Grid.Row="1" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblKichThuoc" Text="--" Grid.Row="1" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Diện tích A:" Grid.Row="2" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblA" Text="-- cm²" Grid.Row="2" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Khối lượng G:" Grid.Row="3" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblG" Text="-- kg/m" Grid.Row="3" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Mô-men quán tính Ix:" Grid.Row="4" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblIx" Text="-- cm⁴" Grid.Row="4" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Mô-men quán tính Iy:" Grid.Row="5" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblIy" Text="-- cm⁴" Grid.Row="5" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Mô-men kháng uốn Wx:" Grid.Row="6" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblWx" Text="-- cm³" Grid.Row="6" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Mô-men kháng uốn Wy:" Grid.Row="7" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblWy" Text="-- cm³" Grid.Row="7" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Bán kính bo góc r:" Grid.Row="8" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblRadius" Text="-- mm" Grid.Row="8" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Chiều dài nhịp L:" Grid.Row="9" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblNhip" Text="-- m" Grid.Row="9" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Mác thép:" Grid.Row="10" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblMacThep" Text="SS400" Grid.Row="10" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+
+                                <TextBlock Text="Giới hạn bền fy:" Grid.Row="11" Style="{StaticResource SidebarLabelStyle}"/>
+                                <TextBlock x:Name="lblFy" Text="2450 kg/cm²" Grid.Row="11" Grid.Column="1" Style="{StaticResource SidebarValueStyle}"/>
+                            </Grid>
+                        </Border>
+                        <TextBlock Text="ĐÁNH GIÁ CHỈ TIÊU" FontSize="14" FontWeight="Bold" Foreground="#065F46" Margin="0,0,0,10"/>
+                        <Border Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="12">
+                            <StackPanel>
+                                <Grid Margin="0,5">
+                                    <TextBlock Text="Bền uốn (Bending):" Style="{StaticResource SidebarLabelStyle}"/>
+                                    <TextBlock x:Name="lblCheckStress" Text="Chưa kiểm tra" FontWeight="Bold" Foreground="#64748B" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                                <Grid Margin="0,5">
+                                    <TextBlock Text="Độ võng (Deflection):" Style="{StaticResource SidebarLabelStyle}"/>
+                                    <TextBlock x:Name="lblCheckDeflection" Text="Chưa kiểm tra" FontWeight="Bold" Foreground="#64748B" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                                <Grid Margin="0,5">
+                                    <TextBlock Text="Ổn định cục bộ:" Style="{StaticResource SidebarLabelStyle}"/>
+                                    <TextBlock Text="ĐẠT" FontWeight="Bold" Foreground="#16A34A" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                                <Grid Margin="0,5">
+                                    <TextBlock Text="Kiểm tra cắt (Shear):" Style="{StaticResource SidebarLabelStyle}"/>
+                                    <TextBlock Text="ĐẠT" FontWeight="Bold" Foreground="#16A34A" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+
+            <Border Grid.Column="1" Style="{StaticResource ModernGroupCardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="BẢN VẼ MẶT CẮT KỸ THUẬT CAD (2D SECTION VIEW)" FontSize="15" FontWeight="Bold" Foreground="#0F172A" Margin="0,0,0,10"/>
+
+                    <Border Grid.Row="1" CornerRadius="8" ClipToBounds="True" BorderThickness="1" BorderBrush="#CBD5E1">
+                        <Canvas x:Name="canvas2D" Background="#181824" SizeChanged="canvas2D_SizeChanged"/>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+
+        <Border Grid.Row="1" Style="{StaticResource ModernGroupCardStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="5,0,20,0">
+                    <TextBlock Text="ĐÁNH GIÁ CHẤT LƯỢNG THIẾT KẾ" FontSize="11" FontWeight="SemiBold" Foreground="#64748B"/>
+                    <TextBlock Text="KIỂM TRA BỀN UỐN " FontSize="16" FontWeight="Bold" Foreground="#0F172A" Margin="0,4,0,0"/>
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                    <TextBlock x:Name="txtStatusUon" Text="Ứng suất max: -- kg/cm² (Tỉ số uốn: -- %)" FontSize="14" FontWeight="SemiBold" Foreground="#334155"/>
+                    <TextBlock Text="Chương trình tính toán xà gồ (Mác thép SS400, [σ]=2450 kg/cm²)" FontSize="11" Foreground="#94A3B8" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <Border x:Name="borderStatus" Grid.Column="2" CornerRadius="8" Padding="15,10" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#F1F5F9">
+                    <TextBlock x:Name="txtStatusCheck" Text="CHƯA KIỂM TRA" FontSize="16" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#64748B"/>
+                </Border>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

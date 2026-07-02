@@ -213,13 +213,66 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Icons\" />
-    <Folder Include="Assets\Images\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\POPUP_KA\" />
     <Folder Include="Views\UserControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\2D.png" />
+    <Resource Include="Assets\Icons\3D.png" />
+    <Resource Include="Assets\Icons\baocaoketqua.png" />
+    <Resource Include="Assets\Icons\bieudonoiluc.png" />
+    <Resource Include="Assets\Icons\bug-report.png" />
+    <Resource Include="Assets\Icons\chon.png" />
+    <Resource Include="Assets\Icons\Connect.png" />
+    <Resource Include="Assets\Icons\contact-mail.png" />
+    <Resource Include="Assets\Icons\email.png" />
+    <Resource Include="Assets\Icons\globe.png" />
+    <Resource Include="Assets\Icons\huongdan.png" />
+    <Resource Include="Assets\Icons\information.png" />
+    <Resource Include="Assets\Icons\ketnoi.png" />
+    <Resource Include="Assets\Icons\khaibao.png" />
+    <Resource Include="Assets\Icons\khaibaotaitrong.png" />
+    <Resource Include="Assets\Icons\kiemtradoben.png" />
+    <Resource Include="Assets\Icons\kiemtradovong.png" />
+    <Resource Include="Assets\Icons\kiemtraluccat.png" />
+    <Resource Include="Assets\Icons\kiemtraondinh.png" />
+    <Resource Include="Assets\Icons\laydulieu.png" />
+    <Resource Include="Assets\Icons\loading-arrow.png" />
+    <Resource Include="Assets\Icons\matbang2D.png" />
+    <Resource Include="Assets\Icons\mophongtinhtoan.png" />
+    <Resource Include="Assets\Icons\noiluc.png" />
+    <Resource Include="Assets\Icons\open.png" />
+    <Resource Include="Assets\Icons\save.png" />
+    <Resource Include="Assets\Icons\share.png" />
+    <Resource Include="Assets\Icons\thaotac.png" />
+    <Resource Include="Assets\Icons\thongsodauvao.png" />
+    <Resource Include="Assets\Icons\thongsothietke.png" />
+    <Resource Include="Assets\Icons\tinhdovong.png" />
+    <Resource Include="Assets\Icons\tinhphanlucgoi.png" />
+    <Resource Include="Assets\Icons\tinhtoan.png" />
+    <Resource Include="Assets\Icons\tinhtoannoiluc.png" />
+    <Resource Include="Assets\Icons\tinhtoanthanhcong.png" />
+    <Resource Include="Assets\Icons\trogiup.png" />
+    <Resource Include="Assets\Icons\update.png" />
+    <Resource Include="Assets\Icons\video.png" />
+    <Resource Include="Assets\Icons\xembaocao.png" />
+    <Resource Include="Assets\Icons\xemketqua.png" />
+    <Resource Include="Assets\Icons\xemnoiluc.png" />
+    <Resource Include="Assets\Icons\xuatbaocao.png" />
+    <Resource Include="Assets\Icons\xuatexcel.png" />
+    <Resource Include="Assets\Icons\xuatketqua.png" />
+    <Resource Include="Assets\Icons\xuatword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\BackGround.png" />
+    <Resource Include="Assets\Images\chunhat.png" />
+    <Resource Include="Assets\Images\C_can_nong.png" />
+    <Resource Include="Assets\Images\C_dap_nguoi.png" />
+    <Resource Include="Assets\Images\vuong.png" />
+    <Resource Include="Assets\Images\Z_can_nong.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\CommunityToolkit.Mvvm.8.4.2\build\CommunityToolkit.Mvvm.targets" Condition="Exists('..\packages\CommunityToolkit.Mvvm.8.4.2\build\CommunityToolkit.Mvvm.targets')" />
