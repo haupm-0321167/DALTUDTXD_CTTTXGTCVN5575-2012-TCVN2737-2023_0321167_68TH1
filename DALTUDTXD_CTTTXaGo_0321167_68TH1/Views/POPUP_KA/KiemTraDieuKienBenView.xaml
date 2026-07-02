@@ -112,5 +112,74 @@ Stretch="UniformToFill"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+                <TextBlock Grid.Row="0" Text="KẾT QUẢ KIỂM TRA BỀN CHO CÁC TỔ HỢP TẢI TRỌNG" FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,10"/>
+
+                <DataGrid x:Name="dgKiemTra"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      Background="White"
+                      BorderThickness="1"
+                      BorderBrush="#E2E8F0"
+                      RowBackground="#FFFFFF"
+                      AlternatingRowBackground="#F8FAFC"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#F1F5F9"
+                      RowHeight="32"
+                      FontSize="13">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#10B981"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="BorderBrush" Value="#059669"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tổ hợp tải trọng" Binding="{Binding ToHop}" Width="*"/>
+                        <DataGridTextColumn Header="σtd (kg/cm²)" Binding="{Binding SigmaTd, StringFormat=F0}" Width="130"/>
+                        <DataGridTextColumn Header="Dấu so sánh" Binding="{Binding DauSoSanh}" Width="100"/>
+                        <DataGridTextColumn Header="[σ] (kg/cm²)" Binding="{Binding SigmaChoPhep, StringFormat=F0}" Width="130"/>
+                        <DataGridTemplateColumn Header="Nhận xét" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding NhanXet}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="#16A34A"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding NhanXet}" Value="KHÔNG ĐẠT">
+                                                        <Setter Property="Foreground" Value="#EF4444"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding NhanXet}" Value="NOT OK">
+                                                        <Setter Property="Foreground" Value="#EF4444"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding NhanXet}" Value="FAIL">
+                                                        <Setter Property="Foreground" Value="#EF4444"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+
+
+        <Button Grid.Row="3" 
+            Content="Bước tiếp theo: Kiểm tra độ võng " 
+            Height="40" 
+            Style="{StaticResource PrimaryButtonStyle}" 
+            Background="#059669" 
+            Click="btn_KiemTraVong_Click"/>
+    </Grid>
 </Window>
