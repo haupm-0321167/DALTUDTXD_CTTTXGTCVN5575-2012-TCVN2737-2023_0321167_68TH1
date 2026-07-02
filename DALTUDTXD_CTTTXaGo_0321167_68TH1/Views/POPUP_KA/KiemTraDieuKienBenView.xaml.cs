@@ -78,9 +78,61 @@ namespace DALTUDTXD_CTTTXaGo_0321167_68TH1.Views.POPUP_KA
 
 
         }
+
+        private double LayCuongDoThep(string tenThep)
+        {
+            switch (tenThep)
+            {
+                case "Thép Nhật JIS G3101:SS400":
+                    return 2450;
+
+                case "Thép Nhật JIS G3302:G350":
+                    return 3500;
+
+                case "Thép Nhật JIS G3302:G450":
+                    return 4500;
+
+                case "Thép Nhật JIS G3302:G550":
+                    return 5500;
+
+                case "Thép Trung Quốc Q235":
+                    return 2350;
+
+                case "Thép Trung Quốc Q345":
+                    return 3450;
+
+                case "Thép Trung Quốc Q390":
+                    return 3900;
+
+                case "Thép Hoa Kỳ A36":
+                    return 2500;
+
+                case "Thép Hoa Kỳ A570":
+                    return 3450;
+
+                default:
+                    return 0;
+            }
+        }
+        private void HienThiKetQua(double fy)
+        {
+            foreach (var item in dsKiemTra)
+            {
+                item.SigmaChoPhep = fy;
+
+                item.NhanXet =
+                    item.SigmaTd <= fy
+                    ? "ĐẠT"
+                    : "KHÔNG ĐẠT";
+            }
+
+            dgKiemTra.Items.Refresh();
+        }
         private void btn_KiemTraVong_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
+            KiemTraDieuKienVongView vongWindow = new KiemTraDieuKienVongView();
+            vongWindow.ShowDialog();
         }
     }
 }
