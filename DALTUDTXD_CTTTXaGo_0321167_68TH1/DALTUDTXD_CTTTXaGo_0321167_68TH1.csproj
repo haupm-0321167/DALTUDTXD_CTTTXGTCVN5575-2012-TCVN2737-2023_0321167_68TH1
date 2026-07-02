@@ -171,6 +171,9 @@
     <Compile Include="Views\POPUP_KA\KiemTraDieuKienBenView.xaml.cs">
       <DependentUpon>KiemTraDieuKienBenView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\POPUP_KA\KiemTraDieuKienVongView.xaml.cs">
+      <DependentUpon>KiemTraDieuKienVongView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -188,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\POPUP_KA\KiemTraDieuKienBenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\POPUP_KA\KiemTraDieuKienVongView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
