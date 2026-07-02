@@ -625,6 +625,92 @@ namespace DALTUDTXD_CTTTXaGo_0321167_68TH1.Views.Pages
             });
         }
 
+        Point3D To3D(Point p, double z, double k)
+        {
+            return new Point3D(p.X * k, p.Y * k, z * k);
+        }
 
+        void ResetCamera()
+        {
+            Safe3DAction(() =>
+            {
+                view3D.Camera = new PerspectiveCamera
+                {
+                    Position = new Point3D(200, 200, 200),
+                    LookDirection = new Vector3D(-200, -200, -200),
+                    UpDirection = new Vector3D(0, 1, 0),
+                    FieldOfView = 45
+                };
+                view3D.ZoomExtents();
+            });
+        }
+
+        private void RunQuickCheck()
+        {
+            if (borderStatus == null || txtStatusCheck == null || txtStatusUon == null || vm?.XaGo == null) return;
+
+            if (GlobalData.DsNoiLucTinhToan == null || GlobalData.DsNoiLucTinhToan.Count == 0)
+            {
+                txtStatusUon.Text = "Chưa có dữ liệu nội lực. Vui lòng vào Ribbon: Dữ liệu > Khai báo tải trọng.";
+                borderStatus.Background = new SolidColorBrush(Color.FromRgb(241, 245, 249)); // light gray
+                txtStatusCheck.Text = "CHƯA KIỂM TRA";
+                txtStatusCheck.Foreground = new SolidColorBrush(Color.FromRgb(100, 116, 139));
+                return;
+            }
+
+            double Wx = vm.XaGo.Wx;
+            double Wy = vm.XaGo.Wy;
+            if (Wx <= 0 || Wy <= 0) return;
+
+            double maxStress = 0;
+            string worstCase = "";
+            foreach (var th in GlobalData.DsNoiLucTinhToan)
+            {
+                double stress = Math.Abs(th.Mx) / Wx + Math.Abs(th.My) / Wy;
+                if (stress > maxStress)
+                {
+                    maxStress = stress;
+                    worstCase = th.Truonghop;
+                }
+            }
+
+            double fy = 2450;
+            double ratio = (maxStress / fy) * 100;
+
+            txtStatusUon.Text = $"Ứng suất lớn nhất: {maxStress:0.0} kg/cm² tại {worstCase} (Tỉ số uốn: {ratio:0.0}%)";
+
+            if (maxStress <= fy)
+            {
+                borderStatus.Background = new SolidColorBrush(Color.FromRgb(22, 163, 74)); // green
+                txtStatusCheck.Text = "ĐẠT (PASS)";
+                txtStatusCheck.Foreground = Brushes.White;
+            }
+            else
+            {
+                borderStatus.Background = new SolidColorBrush(Color.FromRgb(220, 38, 38)); // red
+                txtStatusCheck.Text = "KHÔNG ĐẠT (FAIL)";
+                txtStatusCheck.Foreground = Brushes.White;
+            }
+        }
+
+        private void DrawCross(Canvas canvas, double cx, double cy, string colorHex, string label)
+        {
+            var brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(colorHex));
+            Line hLine = new Line { X1 = cx - 6, Y1 = cy, X2 = cx + 6, Y2 = cy, Stroke = brush, StrokeThickness = 1.5 };
+            Line vLine = new Line { X1 = cx, Y1 = cy - 6, X2 = cx, Y2 = cy + 6, Stroke = brush, StrokeThickness = 1.5 };
+            canvas.Children.Add(hLine);
+            canvas.Children.Add(vLine);
+
+            TextBlock textBlock = new TextBlock
+            {
+                Text = label,
+                Foreground = brush,
+                FontSize = 9,
+                FontWeight = FontWeights.Bold
+            };
+            Canvas.SetLeft(textBlock, cx + 5);
+            Canvas.SetTop(textBlock, cy - 12);
+            canvas.Children.Add(textBlock);
+        }
     }
 }
