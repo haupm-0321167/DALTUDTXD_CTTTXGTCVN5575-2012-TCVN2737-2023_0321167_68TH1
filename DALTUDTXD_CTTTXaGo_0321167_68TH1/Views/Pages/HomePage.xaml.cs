@@ -1,7 +1,7 @@
-﻿using DALTUDTXD_CTTTXaGo_0321167_68TH1.Models;
+﻿using DALTUDTXD_CTTTXaGo_0321167_68TH1.Data;
+using DALTUDTXD_CTTTXaGo_0321167_68TH1.Models;
 using DALTUDTXD_CTTTXaGo_0321167_68TH1.ViewModels;
-using DALTUDTXD_CTTTXaGo_0321167_68TH1.Data;
-
+using HelixToolkit.Geometry;
 using HelixToolkit.Wpf;
 using Newtonsoft.Json;
 using System;
@@ -471,6 +471,160 @@ namespace DALTUDTXD_CTTTXaGo_0321167_68TH1.Views.Pages
                 canvas2D.Children.Add(labelC);
             }
         }
+
+        void Draw_C(XagoModels d, bool isHot)
+        {
+            double B = d.Width;
+            double H = d.Height;
+            double t = d.Thickness;
+            double C = d.Lip;
+            double L = d.Length;
+
+            double k = 0.2;
+
+
+            var pts = new List<Point>
+            {
+                new Point(B, H - C),
+                new Point(B, H),
+                new Point(0, H),
+                new Point(0, 0),
+                new Point(B, 0),
+                new Point(B, C)
+            };
+
+            Safe3DAction(() =>
+            {
+                view3D.Children.Clear();
+                view3D.Children.Add(new SunLight());
+                var line = new LinesVisual3D { Color = Colors.Red, Thickness = 2 };
+                for (int i = 0; i < pts.Count - 1; i++)
+                {
+                    line.Points.Add(new Point3D(pts[i].X * k, pts[i].Y * k, 0));
+                    line.Points.Add(new Point3D(pts[i + 1].X * k, pts[i + 1].Y * k, 0));
+                }
+                view3D.Children.Add(line);
+                Draw3D(pts, L, k, isHot ? Materials.Orange : Materials.Gray);
+            });
+
+            Draw2D(pts, H, B, C, t, "C");
+        }
+
+        void Draw_Z(XagoModels d)
+        {
+            double B = d.Width;
+            double H = d.Height;
+            double C = d.Lip;
+            double t = d.Thickness;
+            double L = d.Length;
+
+            double k = 0.2;
+
+
+            var pts = new List<Point>
+            {
+                new Point(B, H - C),
+                new Point(B, H),
+                new Point(0, H),
+                new Point(0, 0),
+                new Point(-B, 0),
+                new Point(-B, C)
+            };
+
+            Safe3DAction(() =>
+            {
+                view3D.Children.Clear();
+                view3D.Children.Add(new SunLight());
+                Draw3D(pts, L, k, Materials.Gray);
+            });
+
+            Draw2D(pts, H, B, C, t, "Z");
+        }
+
+        void Draw_Box(XagoModels d)
+        {
+            double B = d.Width;
+            double H = d.Height;
+            double t = d.Thickness;
+            double L = d.Length;
+            double k = 0.2;
+
+            Safe3DAction(() =>
+            {
+                view3D.Children.Clear();
+                view3D.Children.Add(new SunLight());
+                var mesh = new MeshBuilder();
+                mesh.AddBox(new Point3D(0, 0, 0), d.Width * k, d.Height * k, d.Length * k);
+                view3D.Children.Add(new ModelVisual3D
+                {
+                    Content = new GeometryModel3D
+                    {
+                        Geometry = mesh.ToMesh(),
+                        Material = Materials.Blue
+                    }
+                });
+            });
+
+            var pts = new List<Point>
+            {
+                new Point(0, 0),
+                new Point(B, 0),
+                new Point(B, H),
+                new Point(0, H),
+                new Point(0, 0)
+            };
+
+            Draw2D(pts, H, B, 0, t, "Box");
+        }
+
+        void Draw3D(List<Point> pts, double length, double k, Material mat)
+        {
+            Safe3DAction(() =>
+            {
+                var mesh = new MeshBuilder(false, false);
+                int n = pts.Count;
+
+                for (int i = 1; i < n - 1; i++)
+                {
+                    mesh.AddTriangle(
+                        To3D(pts[0], 0, k),
+                        To3D(pts[i], 0, k),
+                        To3D(pts[i + 1], 0, k)
+                    );
+                }
+
+                for (int i = 1; i < n - 1; i++)
+                {
+                    mesh.AddTriangle(
+                        To3D(pts[0], length, k),
+                        To3D(pts[i + 1], length, k),
+                        To3D(pts[i], length, k)
+                    );
+                }
+
+                for (int i = 0; i < n; i++)
+                {
+                    int next = (i + 1) % n;
+                    var p1 = To3D(pts[i], 0, k);
+                    var p2 = To3D(pts[next], 0, k);
+                    var p3 = To3D(pts[next], length, k);
+                    var p4 = To3D(pts[i], length, k);
+                    mesh.AddQuad(p1, p2, p3, p4);
+                }
+
+                view3D.Children.Clear();
+                view3D.Children.Add(new SunLight());
+                view3D.Children.Add(new ModelVisual3D
+                {
+                    Content = new GeometryModel3D
+                    {
+                        Geometry = mesh.ToMesh(),
+                        Material = mat
+                    }
+                });
+            });
+        }
+
 
     }
 }
