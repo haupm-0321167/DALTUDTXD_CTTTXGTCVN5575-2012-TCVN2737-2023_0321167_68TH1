@@ -64,7 +64,53 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        
-    </Grid>
+
+    <Grid  Margin="15">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Background="#2A4B3D" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+            <TextBlock Text="CHƯƠNG TRÌNH TÍNH TOÁN XÀ GỒ - KIỂM TRA ĐIỀU KIỆN BỀN"
+                       FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+        </Border>
+
+
+        <Border Grid.Row="1" Style="{StaticResource GroupCardStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Mác thép chế tạo:" Style="{StaticResource FormLabelStyle}"/>
+                <ComboBox Grid.Column="1" x:Name="cbb_LoaiThep" Style="{StaticResource FormComboBoxStyle}" SelectionChanged="cbb_LoaiThep_SelectionChanged">
+                    <ComboBoxItem Content="Thép Nhật JIS G3101:SS400"/>
+                    <ComboBoxItem Content="Thép Nhật JIS G3302:G350"/>
+                    <ComboBoxItem Content="Thép Nhật JIS G3302:G450"/>
+                    <ComboBoxItem Content="Thép Nhật JIS G3302:G550"/>
+                    <ComboBoxItem Content="Thép Trung Quốc Q235"/>
+                    <ComboBoxItem Content="Thép Trung Quốc Q345"/>
+                    <ComboBoxItem Content="Thép Trung Quốc Q390"/>
+                    <ComboBoxItem Content="Thép Hoa Kỳ A36"/>
+                    <ComboBoxItem Content="Thép Hoa Kỳ A570"/>
+                </ComboBox>
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Row="2" Style="{StaticResource GroupCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
 </Window>
