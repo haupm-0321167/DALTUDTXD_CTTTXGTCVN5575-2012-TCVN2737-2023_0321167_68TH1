@@ -139,5 +139,338 @@ namespace DALTUDTXD_CTTTXaGo_0321167_68TH1.Views.Pages
         }
 
 
+        private void canvas2D_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DrawAll();
+        }
+
+        void Draw2D(List<Point> pts, double H, double B, double C, double t, string type)
+        {
+            canvas2D.Children.Clear();
+
+            double w = canvas2D.ActualWidth;
+            double h = canvas2D.ActualHeight;
+
+            if (w == 0) w = 600;
+            if (h == 0) h = 400;
+
+
+            for (double x = 0; x < w; x += 30)
+            {
+                Line gridLine = new Line
+                {
+                    X1 = x,
+                    Y1 = 0,
+                    X2 = x,
+                    Y2 = h,
+                    Stroke = new SolidColorBrush(Color.FromRgb(40, 40, 50)),
+                    StrokeThickness = 0.5
+                };
+                gridLine.StrokeDashArray = new DoubleCollection { 4, 4 };
+                canvas2D.Children.Add(gridLine);
+            }
+            for (double y = 0; y < h; y += 30)
+            {
+                Line gridLine = new Line
+                {
+                    X1 = 0,
+                    Y1 = y,
+                    X2 = w,
+                    Y2 = y,
+                    Stroke = new SolidColorBrush(Color.FromRgb(40, 40, 50)),
+                    StrokeThickness = 0.5
+                };
+                gridLine.StrokeDashArray = new DoubleCollection { 4, 4 };
+                canvas2D.Children.Add(gridLine);
+            }
+
+
+            double minX = pts.Min(p => p.X);
+            double maxX = pts.Max(p => p.X);
+            double minY = pts.Min(p => p.Y);
+            double maxY = pts.Max(p => p.Y);
+
+            double shapeW = maxX - minX;
+            double shapeH = maxY - minY;
+            if (shapeW == 0) shapeW = 1;
+            if (shapeH == 0) shapeH = 1;
+
+            double paddingX = w * 0.20;
+            double paddingY = h * 0.20;
+            double scaleX = (w - paddingX * 2) / shapeW;
+            double scaleY = (h - paddingY * 2) / shapeH;
+            double scale = Math.Min(scaleX, scaleY);
+
+            double centerX = (w - shapeW * scale) / 2 - minX * scale;
+            double centerY = (h + shapeH * scale) / 2 + minY * scale;
+
+
+            double r = GlobalData.SelectedPurlin != null ? GlobalData.SelectedPurlin.Radius : 5.0;
+
+            r = Math.Min(r, Math.Min(B / 2.2, H / 2.2));
+            if (C > 0) r = Math.Min(r, C - 0.5);
+            if (r < 0) r = 0;
+
+            PathGeometry pathGeom = new PathGeometry();
+            PathFigure fig = new PathFigure { IsClosed = false };
+
+            if (type.Contains("C"))
+            {
+                if (r > 0)
+                {
+                    fig.StartPoint = new System.Windows.Point(centerX + B * scale, centerY - (H - C) * scale);
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - (H - r) * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + (B - r) * scale, centerY - H * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Counterclockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + r * scale, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX, centerY - (H - r) * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Counterclockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY - r * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + r * scale, centerY),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Counterclockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + (B - r) * scale, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + B * scale, centerY - r * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Counterclockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - C * scale), true));
+                }
+                else
+                {
+                    fig.StartPoint = new System.Windows.Point(centerX + B * scale, centerY - (H - C) * scale);
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - C * scale), true));
+                }
+            }
+            else if (type.Contains("Z"))
+            {
+                if (r > 0)
+                {
+                    fig.StartPoint = new System.Windows.Point(centerX + B * scale, centerY - (H - C) * scale);
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - (H - r) * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + (B - r) * scale, centerY - H * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Counterclockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + r * scale, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX, centerY - (H - r) * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Counterclockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY - r * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX - r * scale, centerY),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Clockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX - (B - r) * scale, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX - B * scale, centerY - r * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Clockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX - B * scale, centerY - C * scale), true));
+                }
+                else
+                {
+                    fig.StartPoint = new System.Windows.Point(centerX + B * scale, centerY - (H - C) * scale);
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX - B * scale, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX - B * scale, centerY - C * scale), true));
+                }
+            }
+            else
+            {
+                fig.IsClosed = true;
+                if (r > 0)
+                {
+                    fig.StartPoint = new System.Windows.Point(centerX, centerY - r * scale);
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY - (H - r) * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + r * scale, centerY - H * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Clockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + (B - r) * scale, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + B * scale, centerY - (H - r) * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Clockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - r * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX + (B - r) * scale, centerY),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Clockwise, true));
+
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + r * scale, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.ArcSegment(
+                        new System.Windows.Point(centerX, centerY - r * scale),
+                        new System.Windows.Size(r * scale, r * scale),
+                        0, false, SweepDirection.Clockwise, true));
+                }
+                else
+                {
+                    fig.StartPoint = new System.Windows.Point(centerX, centerY);
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY - H * scale), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX + B * scale, centerY), true));
+                    fig.Segments.Add(new System.Windows.Media.LineSegment(new System.Windows.Point(centerX, centerY), true));
+                }
+            }
+            pathGeom.Figures.Add(fig);
+
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path
+            {
+                Stroke = new SolidColorBrush(Color.FromRgb(56, 189, 248)),
+                StrokeThickness = Math.Max(2.5, t * scale),
+                Data = pathGeom
+            };
+            canvas2D.Children.Add(path);
+
+
+            double X_cg = centerX;
+            double Y_cg = centerY - (H / 2) * scale;
+            if (type.Contains("C"))
+            {
+                double x_cg = B * (B + 2 * C) / (H + 2 * B + 2 * C);
+                X_cg = centerX + x_cg * scale;
+            }
+            else if (type.Contains("Z"))
+            {
+                X_cg = centerX;
+            }
+            else
+            {
+                X_cg = centerX + (B / 2) * scale;
+            }
+
+            double X_sc = X_cg;
+            double Y_sc = Y_cg;
+            if (type.Contains("C"))
+            {
+                double x_sc = B * (3 * B + 6 * C) / (H + 6 * B + 12 * C);
+                X_sc = centerX - x_sc * scale;
+            }
+
+
+            SolidColorBrush axisBrush = new SolidColorBrush(Color.FromRgb(59, 130, 246)); // Blue
+            Line lineY = new Line { X1 = 15, Y1 = Y_cg, X2 = w - 15, Y2 = Y_cg, Stroke = axisBrush, StrokeThickness = 0.8 };
+            lineY.StrokeDashArray = new DoubleCollection { 6, 4 };
+            canvas2D.Children.Add(lineY);
+
+            Line lineZ = new Line { X1 = X_cg, Y1 = 15, X2 = X_cg, Y2 = h - 15, Stroke = axisBrush, StrokeThickness = 0.8 };
+            lineZ.StrokeDashArray = new DoubleCollection { 6, 4 };
+            canvas2D.Children.Add(lineZ);
+
+
+            TextBlock lblY = new TextBlock { Text = "Y", Foreground = axisBrush, FontSize = 10, FontWeight = FontWeights.Bold };
+            Canvas.SetLeft(lblY, w - 25);
+            Canvas.SetTop(lblY, Y_cg - 12);
+            canvas2D.Children.Add(lblY);
+
+            TextBlock lblZ = new TextBlock { Text = "Z", Foreground = axisBrush, FontSize = 10, FontWeight = FontWeights.Bold };
+            Canvas.SetLeft(lblZ, X_cg + 5);
+            Canvas.SetTop(lblZ, 15);
+            canvas2D.Children.Add(lblZ);
+
+
+
+            if (Math.Abs(X_sc - X_cg) < 2)
+            {
+                DrawCross(canvas2D, X_cg, Y_cg, "#F59E0B", "G, D");
+            }
+            else
+            {
+                DrawCross(canvas2D, X_cg, Y_cg, "#F59E0B", "G");
+                DrawCross(canvas2D, X_sc, Y_sc, "#EF4444", "D");
+            }
+
+
+            SolidColorBrush dimBrush = new SolidColorBrush(Color.FromRgb(239, 68, 68));
+
+
+            double dimX_H = centerX + minX * scale - 30;
+            double startY_H = centerY - maxY * scale;
+            double endY_H = centerY - minY * scale;
+
+            Line lineH = new Line { X1 = dimX_H, Y1 = startY_H, X2 = dimX_H, Y2 = endY_H, Stroke = dimBrush, StrokeThickness = 1.2 };
+            canvas2D.Children.Add(lineH);
+            canvas2D.Children.Add(new Line { X1 = dimX_H - 5, Y1 = startY_H, X2 = dimX_H + 5, Y2 = startY_H, Stroke = dimBrush, StrokeThickness = 1.2 });
+            canvas2D.Children.Add(new Line { X1 = dimX_H - 5, Y1 = endY_H, X2 = dimX_H + 5, Y2 = endY_H, Stroke = dimBrush, StrokeThickness = 1.2 });
+
+            TextBlock labelH = new TextBlock
+            {
+                Text = $"H = {H} mm",
+                Foreground = dimBrush,
+                FontSize = 10,
+                FontWeight = FontWeights.Bold
+            };
+            Canvas.SetLeft(labelH, dimX_H - 55);
+            Canvas.SetTop(labelH, (startY_H + endY_H) / 2 - 7);
+            canvas2D.Children.Add(labelH);
+
+
+            double dimY_B = centerY - minY * scale + 30;
+            double startX_B = centerX + minX * scale;
+            double endX_B = centerX + maxX * scale;
+
+            Line lineB = new Line { X1 = startX_B, Y1 = dimY_B, X2 = endX_B, Y2 = dimY_B, Stroke = dimBrush, StrokeThickness = 1.2 };
+            canvas2D.Children.Add(lineB);
+            canvas2D.Children.Add(new Line { X1 = startX_B, Y1 = dimY_B - 5, X2 = startX_B, Y2 = dimY_B + 5, Stroke = dimBrush, StrokeThickness = 1.2 });
+            canvas2D.Children.Add(new Line { X1 = endX_B, Y1 = dimY_B - 5, X2 = endX_B, Y2 = dimY_B + 5, Stroke = dimBrush, StrokeThickness = 1.2 });
+
+            TextBlock labelB = new TextBlock
+            {
+                Text = $"B = {B} mm",
+                Foreground = dimBrush,
+                FontSize = 10,
+                FontWeight = FontWeights.Bold
+            };
+            Canvas.SetLeft(labelB, (startX_B + endX_B) / 2 - 25);
+            Canvas.SetTop(labelB, dimY_B + 7);
+            canvas2D.Children.Add(labelB);
+
+            if (C > 0)
+            {
+                double dimX_C = centerX + maxX * scale + 30;
+                double startY_C = centerY - (maxY - C) * scale;
+                double endY_C = centerY - maxY * scale;
+
+                Line lineC = new Line { X1 = dimX_C, Y1 = startY_C, X2 = dimX_C, Y2 = endY_C, Stroke = dimBrush, StrokeThickness = 1.2 };
+                canvas2D.Children.Add(lineC);
+                canvas2D.Children.Add(new Line { X1 = dimX_C - 5, Y1 = startY_C, X2 = dimX_C + 5, Y2 = startY_C, Stroke = dimBrush, StrokeThickness = 1.2 });
+                canvas2D.Children.Add(new Line { X1 = dimX_C - 5, Y1 = endY_C, X2 = dimX_C + 5, Y2 = endY_C, Stroke = dimBrush, StrokeThickness = 1.2 });
+
+                TextBlock labelC = new TextBlock
+                {
+                    Text = $"C = {C} mm",
+                    Foreground = dimBrush,
+                    FontSize = 10,
+                    FontWeight = FontWeights.Bold
+                };
+                Canvas.SetLeft(labelC, dimX_C + 7);
+                Canvas.SetTop(labelC, (startY_C + endY_C) / 2 - 7);
+                canvas2D.Children.Add(labelC);
+            }
+        }
+
     }
 }
