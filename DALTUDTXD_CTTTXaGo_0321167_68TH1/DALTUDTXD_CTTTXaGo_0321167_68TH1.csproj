@@ -219,6 +219,7 @@
     </EmbeddedResource>
     <None Include="Data\xagov.json" />
     <None Include="Data\xagozdn.json" />
+    <None Include="Data\xagozn.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
