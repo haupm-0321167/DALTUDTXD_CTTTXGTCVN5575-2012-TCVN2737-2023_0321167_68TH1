@@ -788,6 +788,433 @@ namespace DALTUDTXD_CTTTXaGo_0321167_68TH1.Views.POPUP_KA
             return tempFile;
         }
 
+        private static void InsertImage(WorksheetPart worksheetPart, string imagePath, int colIndex, int rowIndex)
+        {
+            DrawingsPart drawingsPart;
+            if (worksheetPart.DrawingsPart == null)
+            {
+                drawingsPart = worksheetPart.AddNewPart<DrawingsPart>();
+                worksheetPart.Worksheet.Append(new DocumentFormat.OpenXml.Spreadsheet.Drawing() { Id = worksheetPart.GetIdOfPart(drawingsPart) });
+            }
+            else
+            {
+                drawingsPart = worksheetPart.DrawingsPart;
+            }
 
+            ImagePart imagePart = drawingsPart.AddImagePart(ImagePartType.Png);
+            using (FileStream stream = new FileStream(imagePath, FileMode.Open))
+            {
+                imagePart.FeedData(stream);
+            }
+
+            if (drawingsPart.WorksheetDrawing == null)
+            {
+                drawingsPart.WorksheetDrawing = new DocumentFormat.OpenXml.Drawing.Spreadsheet.WorksheetDrawing();
+            }
+
+            var worksheetDrawing = drawingsPart.WorksheetDrawing;
+
+            var fromMarker = new DocumentFormat.OpenXml.Drawing.Spreadsheet.FromMarker()
+            {
+                ColumnId = new DocumentFormat.OpenXml.Drawing.Spreadsheet.ColumnId(colIndex.ToString()),
+                ColumnOffset = new DocumentFormat.OpenXml.Drawing.Spreadsheet.ColumnOffset("0"),
+                RowId = new DocumentFormat.OpenXml.Drawing.Spreadsheet.RowId(rowIndex.ToString()),
+                RowOffset = new DocumentFormat.OpenXml.Drawing.Spreadsheet.RowOffset("0")
+            };
+
+            var toMarker = new DocumentFormat.OpenXml.Drawing.Spreadsheet.ToMarker()
+            {
+                ColumnId = new DocumentFormat.OpenXml.Drawing.Spreadsheet.ColumnId((colIndex + 5).ToString()), // span 5 columns
+                ColumnOffset = new DocumentFormat.OpenXml.Drawing.Spreadsheet.ColumnOffset("0"),
+                RowId = new DocumentFormat.OpenXml.Drawing.Spreadsheet.RowId((rowIndex + 10).ToString()), // span 10 rows
+                RowOffset = new DocumentFormat.OpenXml.Drawing.Spreadsheet.RowOffset("0")
+            };
+
+            string rId = drawingsPart.GetIdOfPart(imagePart);
+
+            var nonVisualPictureProperties = new DocumentFormat.OpenXml.Drawing.Spreadsheet.NonVisualPictureProperties(
+                new DocumentFormat.OpenXml.Drawing.Spreadsheet.NonVisualDrawingProperties() { Id = (uint)(worksheetDrawing.ChildElements.Count + 1), Name = "Chart_" + rId },
+                new DocumentFormat.OpenXml.Drawing.Spreadsheet.NonVisualPictureDrawingProperties());
+
+            var picture = new DocumentFormat.OpenXml.Drawing.Spreadsheet.Picture(
+                nonVisualPictureProperties,
+                new DocumentFormat.OpenXml.Drawing.Spreadsheet.BlipFill(
+                    new DocumentFormat.OpenXml.Drawing.Blip() { Embed = rId, CompressionState = DocumentFormat.OpenXml.Drawing.BlipCompressionValues.Print },
+                    new DocumentFormat.OpenXml.Drawing.Stretch(new DocumentFormat.OpenXml.Drawing.FillRectangle())),
+                new DocumentFormat.OpenXml.Drawing.Spreadsheet.ShapeProperties(
+                    new DocumentFormat.OpenXml.Drawing.Transform2D(
+                        new DocumentFormat.OpenXml.Drawing.Offset() { X = 0, Y = 0 },
+                        new DocumentFormat.OpenXml.Drawing.Extents() { Cx = 0, Cy = 0 }),
+                    new DocumentFormat.OpenXml.Drawing.PresetGeometry() { Preset = DocumentFormat.OpenXml.Drawing.ShapeTypeValues.Rectangle }));
+
+            var twoCellAnchor = new DocumentFormat.OpenXml.Drawing.Spreadsheet.TwoCellAnchor(
+                fromMarker,
+                toMarker,
+                picture,
+                new DocumentFormat.OpenXml.Drawing.Spreadsheet.ClientData());
+
+            worksheetDrawing.Append(twoCellAnchor);
+        }
+
+        public static void ExportToExcel(string filePath, ObservableCollection<KiemTraBen> dsKiemTraBen, ObservableCollection<KiemTraVong> dsKiemTraVong)
+        {
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(filePath, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+
+                var stylesPart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                var stylesheet = new DocumentFormat.OpenXml.Spreadsheet.Stylesheet();
+                var fonts = new DocumentFormat.OpenXml.Spreadsheet.Fonts(
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 11 }, new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" }), // 0: Default
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 16 }, new DocumentFormat.OpenXml.Spreadsheet.Bold(), new DocumentFormat.OpenXml.Spreadsheet.Color { Rgb = "4A7033" }, new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" }), // 1: Title (Dark Green)
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 12 }, new DocumentFormat.OpenXml.Spreadsheet.Bold(), new DocumentFormat.OpenXml.Spreadsheet.Color { Rgb = "FFFFFF" }, new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" }), // 2: Section Header (White Text)
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 11 }, new DocumentFormat.OpenXml.Spreadsheet.Bold(), new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" }), // 3: Table Header Bold
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 11 }, new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" }, new DocumentFormat.OpenXml.Spreadsheet.Italic()), // 4: Italic
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 11 }, new DocumentFormat.OpenXml.Spreadsheet.Bold(), new DocumentFormat.OpenXml.Spreadsheet.Color { Rgb = "15803D" }, new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" }), // 5: Green Bold (ĐẠT)
+                    new DocumentFormat.OpenXml.Spreadsheet.Font(new DocumentFormat.OpenXml.Spreadsheet.FontSize { Val = 11 }, new DocumentFormat.OpenXml.Spreadsheet.Bold(), new DocumentFormat.OpenXml.Spreadsheet.Color { Rgb = "B91C1C" }, new DocumentFormat.OpenXml.Spreadsheet.FontName { Val = "Arial" })  // 6: Red Bold (KHÔNG ĐẠT)
+                );
+
+                var fills = new DocumentFormat.OpenXml.Spreadsheet.Fills(
+                    new DocumentFormat.OpenXml.Spreadsheet.Fill(new DocumentFormat.OpenXml.Spreadsheet.PatternFill { PatternType = PatternValues.None }), // 0: None
+                    new DocumentFormat.OpenXml.Spreadsheet.Fill(new DocumentFormat.OpenXml.Spreadsheet.PatternFill { PatternType = PatternValues.Gray125 }), // 1: Gray125 (reserved by Excel)
+                    new DocumentFormat.OpenXml.Spreadsheet.Fill(new DocumentFormat.OpenXml.Spreadsheet.PatternFill(new DocumentFormat.OpenXml.Spreadsheet.ForegroundColor { Rgb = "6C9D56" }) { PatternType = PatternValues.Solid }), // 2: Olive Green for Section (matching background.png)
+                    new DocumentFormat.OpenXml.Spreadsheet.Fill(new DocumentFormat.OpenXml.Spreadsheet.PatternFill(new DocumentFormat.OpenXml.Spreadsheet.ForegroundColor { Rgb = "D2EDB2" }) { PatternType = PatternValues.Solid })  // 3: Light Green for Table Header
+                );
+
+                var borders = new DocumentFormat.OpenXml.Spreadsheet.Borders(
+                    new DocumentFormat.OpenXml.Spreadsheet.Border(), // 0: None
+                    new DocumentFormat.OpenXml.Spreadsheet.Border( // 1: Thin border all around
+                        new DocumentFormat.OpenXml.Spreadsheet.LeftBorder(new DocumentFormat.OpenXml.Spreadsheet.Color { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new DocumentFormat.OpenXml.Spreadsheet.RightBorder(new DocumentFormat.OpenXml.Spreadsheet.Color { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new DocumentFormat.OpenXml.Spreadsheet.TopBorder(new DocumentFormat.OpenXml.Spreadsheet.Color { Auto = true }) { Style = BorderStyleValues.Thin },
+                        new DocumentFormat.OpenXml.Spreadsheet.BottomBorder(new DocumentFormat.OpenXml.Spreadsheet.Color { Auto = true }) { Style = BorderStyleValues.Thin }
+                    )
+                );
+
+                var cellFormats = new DocumentFormat.OpenXml.Spreadsheet.CellFormats(
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat { FontId = 0, FillId = 0, BorderId = 0 }, // 0: Default
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat { FontId = 1, FillId = 0, BorderId = 0 }, // 1: Title (Arial 16pt Bold)
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat { FontId = 4, FillId = 0, BorderId = 0 }, // 2: Subtitle (Arial 11pt Italic)
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat { FontId = 2, FillId = 2, BorderId = 0 }, // 3: Section Header (Arial 12pt Bold + Light Blue-Grey Fill)
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat(new DocumentFormat.OpenXml.Spreadsheet.Alignment { Horizontal = HorizontalAlignmentValues.Center, Vertical = VerticalAlignmentValues.Center })
+                    { FontId = 3, FillId = 3, BorderId = 1, ApplyAlignment = true }, // 4: Table Header Centered
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat(new DocumentFormat.OpenXml.Spreadsheet.Alignment { Horizontal = HorizontalAlignmentValues.Left, Vertical = VerticalAlignmentValues.Center })
+                    { FontId = 0, FillId = 0, BorderId = 1, ApplyAlignment = true }, // 5: Table Cell Normal Left
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat(new DocumentFormat.OpenXml.Spreadsheet.Alignment { Horizontal = HorizontalAlignmentValues.Center, Vertical = VerticalAlignmentValues.Center })
+                    { FontId = 0, FillId = 0, BorderId = 1, ApplyAlignment = true }, // 6: Table Cell Normal Center
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat(new DocumentFormat.OpenXml.Spreadsheet.Alignment { Horizontal = HorizontalAlignmentValues.Right, Vertical = VerticalAlignmentValues.Center })
+                    { FontId = 0, FillId = 0, BorderId = 1, ApplyAlignment = true }, // 7: Table Cell Normal Right
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat(new DocumentFormat.OpenXml.Spreadsheet.Alignment { Horizontal = HorizontalAlignmentValues.Center, Vertical = VerticalAlignmentValues.Center })
+                    { FontId = 5, FillId = 0, BorderId = 1, ApplyAlignment = true }, // 8: Green Bold Center (ĐẠT)
+                    new DocumentFormat.OpenXml.Spreadsheet.CellFormat(new DocumentFormat.OpenXml.Spreadsheet.Alignment { Horizontal = HorizontalAlignmentValues.Center, Vertical = VerticalAlignmentValues.Center })
+                    { FontId = 6, FillId = 0, BorderId = 1, ApplyAlignment = true }  // 9: Red Bold Center (KHÔNG ĐẠT)
+                );
+
+                stylesheet.Append(fonts);
+                stylesheet.Append(fills);
+                stylesheet.Append(borders);
+                stylesheet.Append(cellFormats);
+
+                stylesPart.Stylesheet = stylesheet;
+                stylesPart.Stylesheet.Save();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                SheetData sheetData = new SheetData();
+                worksheetPart.Worksheet = new Worksheet(sheetData);
+
+                Columns columns = new Columns();
+                columns.Append(new Column() { Min = 1, Max = 1, Width = 38, CustomWidth = true }); // Col A
+                columns.Append(new Column() { Min = 2, Max = 2, Width = 18, CustomWidth = true }); // Col B
+                columns.Append(new Column() { Min = 3, Max = 3, Width = 12, CustomWidth = true }); // Col C
+                columns.Append(new Column() { Min = 4, Max = 4, Width = 28, CustomWidth = true }); // Col D
+                columns.Append(new Column() { Min = 5, Max = 5, Width = 18, CustomWidth = true }); // Col E
+                worksheetPart.Worksheet.InsertAt(columns, 0);
+
+
+                sheetData.AppendChild(CreateRow(CreateCell("BÁO CÁO KẾT QUẢ TÍNH TOÁN VÀ THIẾT KẾ XÀ GỒ", 1)));
+                sheetData.AppendChild(CreateRow(CreateCell("Chương trình tính toán xà gồ", 2)));
+                sheetData.AppendChild(CreateRow());
+
+
+                sheetData.AppendChild(CreateRow(CreateCell("1. THÔNG SỐ TIẾT DIỆN VÀ ĐẶC TRƯNG HÌNH HỌC", 3)));
+                sheetData.AppendChild(CreateRow(
+                    CreateCell("Đặc trưng tiết diện xà gồ", 4),
+                    CreateCell("Giá trị", 4),
+                    CreateCell("Đơn vị", 4)
+                ));
+
+                var sp = GlobalData.SelectedPurlin;
+                sheetData.AppendChild(CreateRow(CreateCell("Loại tiết diện xà gồ", 5), CreateCell(sp?.Loai ?? "XG Z cán nóng", 6), CreateCell("-", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Chiều cao tiết diện H", 5), CreateCell((sp?.Height ?? 150.0).ToString("F1"), 7), CreateCell("mm", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Chiều rộng cánh B", 5), CreateCell((sp?.Width ?? 62.0).ToString("F1"), 7), CreateCell("mm", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Chiều dài mép gấp c", 5), CreateCell((sp?.Lip ?? 5.0).ToString("F1"), 7), CreateCell("mm", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Chiều dày tiết diện t", 5), CreateCell((sp?.Thickness ?? 2.30).ToString("F2"), 7), CreateCell("mm", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Chiều dài nhịp L", 5), CreateCell(GlobalData.NhipXaGo.ToString("F2"), 7), CreateCell("m", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Diện tích tiết diện A", 5), CreateCell((sp?.A ?? 6.90).ToString("F2"), 7), CreateCell("cm2", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Trọng lượng đơn vị G", 5), CreateCell((sp?.G ?? 5.42).ToString("F2"), 7), CreateCell("kg/m", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Mô-men quán tính Jx", 5), CreateCell(GlobalData.Jx.ToString("F2"), 7), CreateCell("cm4", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Mô-men quán tính Jy", 5), CreateCell(GlobalData.Jy.ToString("F2"), 7), CreateCell("cm4", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Mô-men kháng uốn Wx", 5), CreateCell(GlobalData.Wx.ToString("F2"), 7), CreateCell("cm3", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Mô-men kháng uốn Wy", 5), CreateCell(GlobalData.Wy.ToString("F2"), 7), CreateCell("cm3", 6)));
+
+                sheetData.AppendChild(CreateRow());
+
+
+                sheetData.AppendChild(CreateRow(CreateCell("2. CÁC THÀNH PHẦN TẢI TRỌNG THIẾT KẾ", 3)));
+                sheetData.AppendChild(CreateRow(
+                    CreateCell("Tải trọng tác dụng", 4),
+                    CreateCell("Giá trị tính toán", 4),
+                    CreateCell("Đơn vị", 4)
+                ));
+                sheetData.AppendChild(CreateRow(CreateCell("Tĩnh tải tác dụng (tự trọng + mái tôn)", 5), CreateCell(GlobalData.TongTinhTai.ToString("F2"), 7), CreateCell("kg/m", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Hoạt tải tác dụng (sửa chữa, gió tĩnh)", 5), CreateCell(GlobalData.TongHoatTai.ToString("F2"), 7), CreateCell("kg/m", 6)));
+                sheetData.AppendChild(CreateRow(CreateCell("Tải trọng gió tác dụng (hút / đẩy)", 5), CreateCell(GlobalData.TaiTrongGio.ToString("F2"), 7), CreateCell("kg/m", 6)));
+
+                sheetData.AppendChild(CreateRow());
+
+                sheetData.AppendChild(CreateRow(CreateCell("3. KẾT QUẢ KIỂM TRA ĐIỀU KIỆN BỀN (STRENGTH CHECK)", 3)));
+                sheetData.AppendChild(CreateRow(
+                    CreateCell("Tổ hợp tải trọng tính toán", 4),
+                    CreateCell("Ứng suất σtd (kg/cm2)", 4),
+                    CreateCell("So sánh", 4),
+                    CreateCell("Ứng suất cho phép [σ] (kg/cm2)", 4),
+                    CreateCell("Kết luận", 4)
+                ));
+
+                int thIndex = 1;
+                foreach (var item in dsKiemTraBen)
+                {
+                    string tohopName = $"TH{thIndex}: " + (thIndex == 1 ? "1*TT + 1*HT" : "1*TT + 1*W");
+                    string nhanXet = item.NhanXet;
+                    if (nhanXet == "OK") nhanXet = "ĐẠT";
+                    else if (nhanXet == "NOT OK") nhanXet = "KHÔNG ĐẠT";
+
+                    uint resultStyle = nhanXet == "ĐẠT" ? (uint)8 : (uint)9;
+
+                    sheetData.AppendChild(CreateRow(
+                        CreateCell(tohopName, 5),
+                        CreateCell(item.SigmaTd.ToString("F2"), 7),
+                        CreateCell(item.DauSoSanh ?? "<=", 6),
+                        CreateCell(item.SigmaChoPhep.ToString("F2"), 7),
+                        CreateCell(nhanXet, resultStyle)
+                    ));
+                    thIndex++;
+                }
+
+                sheetData.AppendChild(CreateRow());
+
+
+                sheetData.AppendChild(CreateRow(CreateCell("4. KẾT QUẢ KIỂM TRA ĐIỀU KIỆN VÕNG (DEFLECTION CHECK)", 3)));
+                sheetData.AppendChild(CreateRow(
+                    CreateCell("Tổ hợp tải trọng tiêu chuẩn", 4),
+                    CreateCell("Độ võng f (mm)", 4),
+                    CreateCell("So sánh", 4),
+                    CreateCell("Độ võng giới hạn [f] (mm)", 4),
+                    CreateCell("Kết luận", 4)
+                ));
+
+                thIndex = 1;
+                foreach (var item in dsKiemTraVong)
+                {
+                    string tohopName = $"TH{thIndex}: " + (thIndex == 1 ? "1*TT tiêu chuẩn + 1*HT tiêu chuẩn" : "1*TT tiêu chuẩn + 1*W tiêu chuẩn");
+                    string nhanXet = item.NhanXet;
+                    if (nhanXet == "OK") nhanXet = "ĐẠT";
+                    else if (nhanXet == "NOT OK") nhanXet = "KHÔNG ĐẠT";
+
+                    uint resultStyle = nhanXet == "ĐẠT" ? (uint)8 : (uint)9;
+
+                    sheetData.AppendChild(CreateRow(
+                        CreateCell(tohopName, 5),
+                        CreateCell(item.DoVong.ToString("F2"), 7),
+                        CreateCell(item.DauSoSanh ?? "<=", 6),
+                        CreateCell(item.DoVongChoPhep.ToString("F2"), 7),
+                        CreateCell(nhanXet, resultStyle)
+                    ));
+                    thIndex++;
+                }
+
+                sheetData.AppendChild(CreateRow());
+
+
+                sheetData.AppendChild(CreateRow(CreateCell("5. BIỂU ĐỒ NỘI LỰC VÀ ĐỘ VÕNG DẦM LIÊN TỤC 5 NHỊP", 3)));
+                sheetData.AppendChild(CreateRow());
+
+
+                MergeCells mergeCells = new MergeCells();
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A1:E1") });
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A2:E2") });
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A4:C4") });
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A19:C19") });
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A25:E25") });
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A30:E30") });
+                mergeCells.Append(new MergeCell() { Reference = new StringValue("A35:E35") });
+                worksheetPart.Worksheet.InsertAfter(mergeCells, sheetData);
+
+
+                Sheets sheetsList = workbookPart.Workbook.Sheets;
+                if (sheetsList == null)
+                {
+                    sheetsList = workbookPart.Workbook.AppendChild(new Sheets());
+                }
+                string relationshipId = workbookPart.GetIdOfPart(worksheetPart);
+                Sheet sheet = new Sheet() { Id = relationshipId, SheetId = 1, Name = "Thiet Ke Xa Go" };
+                sheetsList.Append(sheet);
+
+
+                double nhipVal = GlobalData.NhipXaGo;
+                if (nhipVal <= 0) nhipVal = 6.0;
+                double loadQVal = (GlobalData.TongTinhTai + GlobalData.TongHoatTai) / 100.0;
+                if (loadQVal <= 0) loadQVal = 10.0;
+
+                string imgMoment = string.Empty;
+                string imgShear = string.Empty;
+                string imgDeflection = string.Empty;
+
+                try
+                {
+                    imgMoment = GenerateDiagramImage("Moment", nhipVal, loadQVal);
+                    imgShear = GenerateDiagramImage("Shear", nhipVal, loadQVal);
+                    imgDeflection = GenerateDiagramImage("Deflection", nhipVal, loadQVal);
+
+                    InsertImage(worksheetPart, imgMoment, 0, 36); // Col A, Row 37
+                    InsertImage(worksheetPart, imgShear, 0, 47); // Col A, Row 48
+                    InsertImage(worksheetPart, imgDeflection, 0, 58); // Col A, Row 59
+                }
+                catch (Exception)
+                {
+
+                }
+
+                workbookPart.Workbook.Save();
+
+
+                try
+                {
+                    if (File.Exists(imgMoment)) File.Delete(imgMoment);
+                    if (File.Exists(imgShear)) File.Delete(imgShear);
+                    if (File.Exists(imgDeflection)) File.Delete(imgDeflection);
+                }
+                catch (Exception) { }
+            }
+        }
+
+        private static Row CreateRow(params Cell[] cells)
+        {
+            Row row = new Row();
+            foreach (var cell in cells)
+            {
+                row.Append(cell);
+            }
+            return row;
+        }
+
+        private static Cell CreateCell(string text)
+        {
+            return new Cell()
+            {
+                DataType = CellValues.String,
+                CellValue = new CellValue(text ?? string.Empty)
+            };
+        }
+
+        private static Cell CreateCell(string text, uint styleIndex)
+        {
+            return new Cell()
+            {
+                DataType = CellValues.String,
+                CellValue = new CellValue(text ?? string.Empty),
+                StyleIndex = styleIndex
+            };
+        }
+
+        private static double[] SolveSupportMoments(int numSpans, double spanL, double loadQ)
+        {
+            int numSupports = numSpans + 1;
+            double[] M = new double[numSupports];
+            if (numSpans == 1)
+            {
+                M[0] = 0;
+                M[1] = 0;
+                return M;
+            }
+
+            int n = numSpans - 1;
+            double[] a = new double[n];
+            double[] b = new double[n];
+            double[] c = new double[n];
+            double[] d = new double[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                a[i] = 1.0;
+                b[i] = 4.0;
+                c[i] = 1.0;
+                d[i] = -0.5 * loadQ * spanL * spanL;
+            }
+
+            double[] cPrime = new double[n];
+            double[] dPrime = new double[n];
+
+            cPrime[0] = c[0] / b[0];
+            dPrime[0] = d[0] / b[0];
+
+            for (int i = 1; i < n; i++)
+            {
+                double denom = b[i] - a[i] * cPrime[i - 1];
+                cPrime[i] = c[i] / denom;
+                dPrime[i] = (d[i] - a[i] * dPrime[i - 1]) / denom;
+            }
+
+            double[] x = new double[n];
+            x[n - 1] = dPrime[n - 1];
+            for (int i = n - 2; i >= 0; i--)
+            {
+                x[i] = dPrime[i] - cPrime[i] * x[i + 1];
+            }
+
+            M[0] = 0;
+            M[numSpans] = 0;
+            for (int i = 0; i < n; i++)
+            {
+                M[i + 1] = x[i];
+            }
+
+            return M;
+        }
+
+        private static double GetValAtCoordinate(int spanIndex, double localX, string type, double spanL, double loadQ, double[] supportMoments)
+        {
+            if (supportMoments == null || spanIndex < 0 || spanIndex >= supportMoments.Length - 1) return 0;
+            double M_left = supportMoments[spanIndex];
+            double M_right = supportMoments[spanIndex + 1];
+
+            if (type == "Moment")
+            {
+                return M_left * (1.0 - localX / spanL) + M_right * (localX / spanL) + (loadQ * localX * (spanL - localX)) / 2.0;
+            }
+            else if (type == "Shear")
+            {
+                return (M_right - M_left) / spanL + (loadQ * (spanL - 2.0 * localX)) / 2.0;
+            }
+            else
+            {
+                double Jx = GlobalData.Jx;
+                if (Jx <= 0) Jx = 200.0;
+                double E = 2.1e5;
+                double I = Jx * 10000.0;
+
+                double q_N_mm = loadQ;
+                double L_mm = spanL * 1000.0;
+                double x_mm = localX * 1000.0;
+
+                double y_mm = (M_left * 1000000.0 * (x_mm * x_mm / 2.0 - x_mm * x_mm * x_mm / (6.0 * L_mm) - L_mm * x_mm / 3.0) +
+                               M_right * 1000000.0 * (x_mm * x_mm * x_mm / (6.0 * L_mm) - L_mm * x_mm / 6.0) +
+                               q_N_mm * (L_mm * x_mm * x_mm * x_mm / 12.0 - x_mm * x_mm * x_mm * x_mm / 24.0 - L_mm * L_mm * L_mm * x_mm / 24.0)) / (E * I);
+
+                return Math.Abs(y_mm);
+            }
+        }
     }
 }
