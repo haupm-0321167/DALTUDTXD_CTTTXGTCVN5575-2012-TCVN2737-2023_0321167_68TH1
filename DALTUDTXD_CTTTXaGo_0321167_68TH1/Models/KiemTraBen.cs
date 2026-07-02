@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DALTUDTXD_CTTTXaGo_0321167_68TH1.Models
 {
-    internal class KiemTraBen
+    public class KiemTraBen
     {
         public string ToHop { get; set; }
 
