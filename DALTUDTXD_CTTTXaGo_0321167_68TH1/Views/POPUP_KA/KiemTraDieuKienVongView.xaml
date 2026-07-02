@@ -66,7 +66,90 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        
-    </Grid>
+    <Grid Margin="15">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Background="#2A4B3D" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+            <TextBlock Text="CHƯƠNG TRÌNH TÍNH TOÁN XÀ GỒ - KIỂM TRA ĐIỀU KIỆN VÕNG"
+                   FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+        </Border>
+
+        <Border Grid.Row="1" Style="{StaticResource GroupCardStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Số điểm giằng xà gồ:" Style="{StaticResource FormLabelStyle}"/>
+                <ComboBox Grid.Column="1" x:Name="cbb_DiemGiang" Style="{StaticResource FormComboBoxStyle}" Width="150" HorizontalAlignment="Left" SelectionChanged="cbb_DiemGiang_SelectionChanged">
+                    <ComboBoxItem Content="0"/>
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                </ComboBox>
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Row="2" Style="{StaticResource GroupCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="CHI TIẾT ĐỘ VÕNG CHO CÁC TỔ HỢP TẢI TRỌNG (CVV1 &amp; CVV2)" FontWeight="Bold" FontSize="13" Foreground="#065F46" Margin="0,0,0,10"/>
+
+                <DataGrid x:Name="dgDoVong"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      Background="White"
+                      BorderThickness="1"
+                      BorderBrush="#E2E8F0"
+                      RowBackground="#FFFFFF"
+                      AlternatingRowBackground="#F8FAFC"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal"
+                      HorizontalGridLinesBrush="#F1F5F9"
+                      RowHeight="32"
+                      FontSize="13">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#10B981"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="BorderBrush" Value="#059669"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tổ hợp" Binding="{Binding ToHop}" Width="120">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        
 </Window>
