@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,400 +20,604 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_
     /// <summary>
     /// Interaction logic for Tohoptaitrongview.xaml
     /// </summary>
-    public partial class Tohoptaitrongview : Window
+    public partial class taitrongview : Window
     {
-        private ObservableCollection<ToHopTaiTrong> dsTinhToan =
-            new ObservableCollection<ToHopTaiTrong>();
 
-        private ObservableCollection<ToHopTaiTrong> dsTieuChuan =
-            new ObservableCollection<ToHopTaiTrong>();
 
-        public Tohoptaitrongview()
+        private ObservableCollection<TaiTrongItem> dsTinhTai =
+     new ObservableCollection<TaiTrongItem>();
+        private ObservableCollection<TaiTrongItem> dsHoatTai =
+     new ObservableCollection<TaiTrongItem>();
+
+        private Dictionary<string, Diadiem> dsTinh =
+           new Dictionary<string, Diadiem>();
+        private double B_Nha = 0;
+        private double H_Nha = 0;
+        private int currentStep = 1;
+        public taitrongview()
         {
             InitializeComponent();
-            double gio = GlobalData.TaiTrongGio;
-            double tinh = GlobalData.TongTinhTai;
-            double hoat = GlobalData.TongHoatTai;
-            double NhipXaGo = GlobalData.NhipXaGo;
-            double B1 = GlobalData.B1;
-            double A = GlobalData.A;
-            double G = GlobalData.G;
-            double Ix = GlobalData.Jx;
-            double Iy = GlobalData.Jy;
-            double Wx = GlobalData.Wx;
-            double Wy = GlobalData.Wy;
-            double TG = GlobalData.TyGiang;
+            LoadJson();
+            LoadTinh();
+            LoadTinhTai();
+            LoadHoatTai();
 
-
-            LoadTinhToan();
-            LoadTieuChuan();
-
-        }
-        private void LoadTinhToan()
-        {
-            dsTinhToan.Clear();
-
-            dsTinhToan.Add(new ToHopTaiTrong());
-
-            dgnoiluctinhtoan.ItemsSource = dsTinhToan;
+            
+            if (!string.IsNullOrEmpty(ChonnhaPage.LoaiMai))
+            {
+                foreach (ComboBoxItem item in cbb_loainha.Items)
+                {
+                    string content = item.Content.ToString();
+                    if (content.Contains(ChonnhaPage.LoaiMai) ||
+                        (ChonnhaPage.LoaiMai == "Mái dốc 1 mái" && content == "Nhà 1 mái dốc") ||
+                        (ChonnhaPage.LoaiMai == "2 mái dốc" && content == "Nhà 2 mái dốc"))
+                    {
+                        cbb_loainha.SelectedItem = item;
+                        break;
+                    }
+                }
+            }
         }
 
-        private void LoadTieuChuan()
+        private void LoadJson()
         {
-            dsTieuChuan.Clear();
+            try
+            {
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
-            dsTieuChuan.Add(new ToHopTaiTrong());
+                string projectPath = Directory.GetParent(baseDir).Parent.Parent.FullName;
 
-            dgnoiluctieuchuan.ItemsSource = dsTieuChuan;
+                string path = System.IO.Path.Combine(projectPath, "Data", "diadiem.json");
+
+                string json = File.ReadAllText(path);
+
+
+                dsTinh = JsonConvert.DeserializeObject
+                    <Dictionary<string, Diadiem>>(json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không đọc được file JSON!\n" + ex.Message);
+            }
         }
-        private void Truonghop_Changed(
-    object sender,
-    SelectionChangedEventArgs e)
+        private void LoadTinh()
         {
-            ComboBox cb = sender as ComboBox;
+            cbb_tinh.Items.Clear();
 
-            if (cb == null || cb.SelectedItem == null)
+            foreach (string tinh in dsTinh.Keys)
+            {
+                cbb_tinh.Items.Add(tinh);
+            }
+        }
+        private void cbb_tinh_SelectionChanged(object sender,
+            SelectionChangedEventArgs e)
+        {
+            if (cbb_tinh.SelectedItem == null) return;
+
+            string tinh = cbb_tinh.SelectedItem.ToString();
+
+            cbb_huyen.Items.Clear();
+            cbb_phuong.Items.Clear();
+
+
+
+            foreach (string huyen in dsTinh[tinh].quan_huyen.Keys)
+            {
+                cbb_huyen.Items.Add(huyen);
+            }
+        }
+
+        private void cbb_huyen_SelectionChanged(object sender,
+            SelectionChangedEventArgs e)
+        {
+            if (cbb_tinh.SelectedItem == null ||
+         cbb_huyen.SelectedItem == null)
                 return;
 
-            ComboBoxItem item =
-                cb.SelectedItem as ComboBoxItem;
+            string tinh = cbb_tinh.SelectedItem.ToString();
 
-            string truonghop =
-                item.Content.ToString();
+            string huyen = cbb_huyen.SelectedItem.ToString();
 
-            ToHopTaiTrong row =
-                (ToHopTaiTrong)
-                ((FrameworkElement)sender).DataContext;
+            cbb_phuong.Items.Clear();
 
-            double TT = GlobalData.TongTinhTai;
-            double HT = GlobalData.TongHoatTai;
-            double W = GlobalData.TaiTrongGio;
-            double B1 = GlobalData.B1;
-
-            double A = GlobalData.A;
-            double G = GlobalData.G;
-            double Ix = GlobalData.Jx;
-            double Iy = GlobalData.Jy;
-            double Wx = GlobalData.Wx;
-            double Wy = GlobalData.Wy;
-            double TG = GlobalData.TyGiang;
-
-
-            double alpha =
-                Math.Atan(GlobalData.DoDocMai / 100.0);
-
-            double L = GlobalData.NhipXaGo;
-
-            if (truonghop.Contains("TH1: 1*TT + 1*HT"))
-            {
-
-
-                row.Px = (G * 1.05 + HT + TT) * Math.Sin(alpha);
-                row.Py = (G * 1.05 + HT + TT) * Math.Cos(alpha);
-                if (B1 == 0)
-                {
-                    row.Mx = row.Py * L * L / 8.0;
-                    if (TG == 0)
-                    {
-                        row.My = row.Px * L * L / 8.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.My = row.Px * L * L / 32.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.My = row.Px * L * L / 40.0;
-                            }
-                            else row.My = row.Px * L * L / (4000 / 17.85);
-
-                }
-                else
-                {
-                    row.Mx = row.Py * L * L / 11.0;
-                    if (TG == 0)
-                    {
-                        row.My = row.Px * L * L / 11.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.My = row.Px * L * L / 44.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.My = row.Px * L * L / 99.0;
-                            }
-                            else
-                                if (TG == 3)
-                                {
-                                    row.My = row.Px * L * L / 176.0;
-                                }
-                                else row.My = row.Px * L * L / 275;
-
-                }
-
-
-            }
-
-            else if (truonghop.Contains("TH2: 1*TT + 1*W"))
-            {
-                row.Px = (-G * 1.05 + W - TT) * Math.Sin(alpha);
-                row.Py = (-G * 1.05 + W - TT) * Math.Cos(alpha);
-                if (B1 == 0)
-                {
-                    row.Mx = row.Py * L * L / 8.0;
-                    if (TG == 0)
-                    {
-                        row.My = row.Px * L * L / 8.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.My = row.Px * L * L / 32.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.My = row.Px * L * L / 40.0;
-                            }
-                            else row.My = row.Px * L * L / (4000 / 17.85);
-
-                }
-                else
-                {
-                    row.Mx = row.Py * L * L / 11.0;
-                    if (TG == 0)
-                    {
-                        row.My = row.Px * L * L / 11.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.My = row.Px * L * L / 44.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.My = row.Px * L * L / 99.0;
-                            }
-                            else
-                                if (TG == 3)
-                                {
-                                    row.My = row.Px * L * L / 176.0;
-                                }
-                                else row.My = row.Px * L * L / 275;
-
-                }
-            }
-
-            row.Truonghop = truonghop;
-
-            if (row == dsTinhToan.Last())
-            {
-                dsTinhToan.Add(new ToHopTaiTrong());
-
-                dgnoiluctinhtoan.ItemsSource = null;
-                dgnoiluctinhtoan.ItemsSource = dsTinhToan;
-            }
-            else
-            {
-                dgnoiluctinhtoan.Items.Refresh();
-            }
-        }
-        private void TruonghopTC_Changed(
-    object sender,
-    SelectionChangedEventArgs e)
-        {
-            ComboBox cb = sender as ComboBox;
-
-            if (cb == null || cb.SelectedItem == null)
+            if (dsTinh[tinh].quan_huyen == null)
                 return;
 
-            ComboBoxItem item =
-                cb.SelectedItem as ComboBoxItem;
-
-            string truonghop =
-                item.Content.ToString();
-
-            ToHopTaiTrong row =
-                (ToHopTaiTrong)
-                ((FrameworkElement)sender).DataContext;
-
-            double TT = GlobalData.TongTinhTai;
-            double HT = GlobalData.TongHoatTai;
-            double W = GlobalData.TaiTrongGio;
-            double B1 = GlobalData.B1;
-
-            double A = GlobalData.A;
-            double G = GlobalData.G;
-            double Ix = GlobalData.Jx;
-            double Iy = GlobalData.Jy;
-            double Wx = GlobalData.Wx;
-            double Wy = GlobalData.Wy;
-            double TG = GlobalData.TyGiang;
-
-
-            double alpha =
-                Math.Atan(GlobalData.DoDocMai / 100.0);
-
-            double L = GlobalData.NhipXaGo;
-
-            double n1 = 1.05;
-            double n2 = 1.30;
-            double n3 = 2.10;
-
-            if (truonghop.Contains("TH1: 1*TT tiêu chuẩn + 1*HT tiêu chuẩn"))
+            foreach (string xa in
+                dsTinh[tinh].quan_huyen[huyen])
             {
-
-
-                row.Ptcx = (G + HT / n2 + TT / n1) * Math.Sin(alpha);
-                row.Ptcy = (G + HT / n2 + TT / n1) * Math.Cos(alpha);
-                GlobalData.Ptcx_CVV1 = row.Ptcx;
-                GlobalData.Ptcy_CVV1 = row.Ptcy;
-                if (B1 == 0)
-                {
-                    row.Mtcx = row.Ptcy * L * L / 8.0;
-                    if (TG == 0)
-                    {
-                        row.Mtcy = row.Ptcx * L * L / 8.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.Mtcy = row.Ptcx * L * L / 32.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.Mtcy = row.Ptcx * L * L / 40.0;
-                            }
-                            else row.Mtcy = row.Ptcx * L * L / (4000 / 17.85);
-
-                }
-                else
-                {
-                    row.Mtcx = row.Ptcy * L * L / 11.0;
-                    if (TG == 0)
-                    {
-                        row.Mtcy = row.Ptcx * L * L / 11.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.Mtcy = row.Ptcx * L * L / 44.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.Mtcy = row.Ptcx * L * L / 99.0;
-                            }
-                            else
-                                if (TG == 3)
-                                {
-                                    row.Mtcy = row.Ptcx * L * L / 176.0;
-                                }
-                                else row.Mtcy = row.Ptcx * L * L / 275;
-
-                }
-
-
+                cbb_phuong.Items.Add(xa);
             }
 
-            else if (truonghop.Contains("TH2: 1*TT tiêu chuẩn + 1*W tiêu chuẩn"))
-            {
-                row.Ptcx = (-G + W / n3 - TT / n1) * Math.Sin(alpha);
-                row.Ptcy = (-G + W / n3 - TT / n1) * Math.Cos(alpha);
-                GlobalData.Ptcx_CVV2 = row.Ptcx;
-                GlobalData.Ptcy_CVV2 = row.Ptcy;
-                if (B1 == 0)
-                {
-                    row.Mtcx = row.Ptcy * L * L / 8.0;
-                    if (TG == 0)
-                    {
-                        row.Mtcy = row.Ptcx * L * L / 8.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.Mtcy = row.Ptcx * L * L / 32.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.Mtcy = row.Ptcx * L * L / 40.0;
-                            }
-                            else row.Mtcy = row.Ptcx * L * L / (4000 / 17.85);
 
-                }
-                else
-                {
-                    row.Mtcx = row.Ptcy * L * L / 11.0;
-                    if (TG == 0)
-                    {
-                        row.Mtcy = row.Ptcx * L * L / 11.0;
-                    }
-                    else
-                        if (TG == 1)
-                        {
-                            row.Mtcy = row.Ptcx * L * L / 44.0;
-                        }
-                        else
-                            if (TG == 2)
-                            {
-                                row.Mtcy = row.Ptcx * L * L / 99.0;
-                            }
-                            else
-                                if (TG == 3)
-                                {
-                                    row.Mtcy = row.Ptcx * L * L / 176.0;
-                                }
-                                else row.Mtcy = row.Ptcx * L * L / 275;
 
-                }
-            }
-
-            row.Truonghop = truonghop;
-
-            if (row == dsTieuChuan.Last())
-            {
-                dsTieuChuan.Add(new ToHopTaiTrong());
-
-                dgnoiluctieuchuan.ItemsSource = null;
-                dgnoiluctieuchuan.ItemsSource = dsTieuChuan;
-            }
-            else
-            {
-                dgnoiluctieuchuan.Items.Refresh();
-            }
         }
 
-        private void btn_Luu_Click(object sender, RoutedEventArgs e)
+        private void Cbb_phuong_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txt_vunggio == null || txt_aplucgio == null || txt_diahinh == null)
+                return;
+
+            if (cbb_tinh.SelectedItem == null ||
+       cbb_huyen.SelectedItem == null ||
+       cbb_phuong.SelectedItem == null)
+                return;
+
+            string tinh =
+                cbb_tinh.SelectedItem.ToString();
+
+            Diadiem data = dsTinh[tinh];
+
+            txt_vunggio.Text =
+                data.vung_gio;
+
+            txt_aplucgio.Text =
+                data.ap_luc_gio.ToString();
+
+            txt_diahinh.Text =
+                data.dia_hinh;
+        }
+        private void TinhZe_Auto(object sender, EventArgs e)
+        {
+            if (txt_ze == null || txt_kze == null || txt_diahinh == null)
+            {
+                return;
+            }
+            if (B_Nha == 0 || H_Nha == 0)
+            {
+                Inputbh frm = new Inputbh();
+
+                if (frm.ShowDialog() == true)
+                {
+                    B_Nha = frm.B;
+                    H_Nha = frm.H;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            try
+            {
+                double Z = TinhZe(B_Nha, H_Nha);
+
+                txt_ze.Text = Z.ToString("0.00");
+
+                double kZe = Tinh_kZe(Z, txt_diahinh.Text);
+
+                txt_kze.Text = kZe.ToString("0.000");
+            }
+            catch
+            {
+
+            }
+        }
+        private double TinhZe(double b, double h)
+        {
+
+            if (h <= b)
+                return h;
+
+
+            if (h <= 2 * b)
+                return b;
+
+            return h;
+        }
+        private double Tinh_kZe(double Ze, string diaHinh)
+        {
+            double zg = 0;
+            double zmin = 0;
+            double alpha = 0;
+
+            switch (diaHinh)
+            {
+                case "A":
+                    zg = 213.36;
+                    zmin = 2.13;
+                    alpha = 11.5;
+                    break;
+
+                case "B":
+                    zg = 274.32;
+                    zmin = 4.57;
+                    alpha = 9.5;
+                    break;
+
+                case "C":
+                    zg = 365.76;
+                    zmin = 9.14;
+                    alpha = 7.0;
+                    break;
+
+                default:
+                    return 1.0;
+            }
+
+
+            if (Ze < zmin)
+                Ze = zmin;
+
+            double kZe = 2.01 *
+                         Math.Pow(
+                             Ze / zg,
+                             2.0 / alpha);
+
+            return kZe;
+        }
+
+
+
+        private void Tinhc_Auto(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbb_loainha == null || txt_c == null)
+                return;
+            if (cbb_loainha.SelectedItem == null)
+                return;
+            string loaiNha =
+                ((ComboBoxItem)cbb_loainha.SelectedItem)
+                .Content.ToString();
+            double c = 0;
+
+            switch (loaiNha)
+            {
+                case "Nhà mái bằng":
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng F")
+                        c = -1.2;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng G")
+                        c = -0.9;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng H")
+                        c = -0.7;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng I")
+                        c = -0.2;
+
+
+                    break;
+
+                case "Nhà 1 mái dốc":
+
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng F")
+                        c = -2.31;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng G")
+                        c = -1.3;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng H")
+                        c = -0.81;
+
+
+                    break;
+
+                case "Nhà 2 mái dốc":
+
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng F")
+                        c = -1.67;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng G")
+                        c = -1.3;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng H")
+                        c = -0.69;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng I")
+                        c = -0.59;
+
+                    break;
+
+                case "Nhà mái vòm":
+
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng A")
+                        c = -1.2;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng B")
+                        c = -0.87;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "Vùng C")
+                        c = -0.4;
+                    if (cbb_vunggio.SelectedItem != null && ((ComboBoxItem)cbb_vunggio.SelectedItem).Content.ToString() == "-")
+                        c = -0.4;
+
+                    break;
+
+                case "Nhà mái che":
+                    c = -1.3;
+                    break;
+            }
+
+            txt_c.Text = c.ToString("0.##");
+
+            TinhZe_Auto(null, null);
+
+        }
+
+        private void TinhgammaT_Auto(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbb_capcongtrinh == null || txt_gammaT == null)
+                return;
+            if (cbb_capcongtrinh.SelectedItem == null)
+                return;
+            string capcongtrinh =
+                  ((ComboBoxItem)cbb_capcongtrinh.SelectedItem)
+                  .Content.ToString();
+            double gammaT = 1.0;
+
+            switch (capcongtrinh)
+            {
+                case "Công trình bình thường":
+                    gammaT = 1.0;
+                    break;
+
+                case "Công trình quan trọng":
+                    gammaT = 1.1;
+                    break;
+
+                case "Công trình đặc biệt":
+                    gammaT = 1.2;
+                    break;
+            }
+            txt_gammaT.Text = gammaT.ToString("0.00");
+        }
+
+        private void btn_tinhtoan_Click(object sender, RoutedEventArgs e)
         {
             {
                 try
                 {
-                    GlobalData.DsNoiLucTinhToan = dsTinhToan
-                        .Where(x => !string.IsNullOrEmpty(x.Truonghop))
-                        .ToList();
+                    double W0 = Convert.ToDouble(txt_aplucgio.Text);
+                    double kZe = Convert.ToDouble(txt_kze.Text);
+                    double c = Convert.ToDouble(txt_c.Text);
+                    Double B = Convert.ToDouble(txt_buocxago.Text);
+                    double Gf = 0.85;
 
-                    GlobalData.DsNoiLucTieuChuan = dsTieuChuan
-                        .Where(x => !string.IsNullOrEmpty(x.Truonghop))
-                        .ToList();
+                    double W = Math.Abs(B * W0 * kZe * c * Gf * Convert.ToDouble(txt_gammaT.Text) * 2.1);
 
-                    MessageBox.Show("Đã lưu tất cả các tổ hợp tải trọng!");
-
-                    Close();
+                    txt_ketqua.Text = W.ToString("0.##") + " kg/m";
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(
+                        "Vui lòng kiểm tra lại các thông số đầu vào!",
+                        "Lỗi",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
                 }
             }
-            this.Close();
+
+        }
+
+        private void VatLieu_Changed(
+    object sender,
+    SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            if (cb == null || cb.SelectedItem == null)
+                return;
+
+            ComboBoxItem item =
+                  cb.SelectedItem as ComboBoxItem;
+
+            string tenVatLieu =
+                item.Content.ToString();
+
+
+            TaiTrongItem row =
+                (TaiTrongItem)((FrameworkElement)sender).DataContext;
+
+
+            switch (tenVatLieu)
+            {
+                case "Tôn sóng":
+                    row.Gtc = 4.5;
+                    row.N1 = 1.05;
+                    break;
+
+                case "Tôn PU":
+                    row.Gtc = 12;
+                    row.N1 = 1.05;
+                    break;
+
+                case "Trần treo":
+                    row.Gtc = 0;
+                    row.N1 = 1.05;
+                    break;
+                case "Trần thạnh cao":
+                    row.Gtc = 10;
+                    row.N1 = 1.05;
+                    break;
+
+            }
+            row.TenVatLieu = tenVatLieu;
+
+            row.B = Convert.ToDouble(txt_buocxago.Text);
+
+            row.Gtt = row.Gtc * row.N1 * row.B;
+            if (row == dsTinhTai.Last())
+            {
+                dsTinhTai.Add(new TaiTrongItem());
+
+                dgTinhTai.ItemsSource = null;
+                dgTinhTai.ItemsSource = dsTinhTai;
+            }
+            else
+            {
+                dgTinhTai.Items.Refresh();
+            }
+            txt_TongTinhTai.Text =
+        dsTinhTai.Sum(x => x.Gtt)
+                .ToString("0.00");
+
+        }
+        private void LoadTinhTai()
+        {
+            dsTinhTai.Clear();
+
+            dsTinhTai.Add(new TaiTrongItem());
+
+            dgTinhTai.ItemsSource = dsTinhTai;
+        }
+
+
+
+        private void LoaiHoatTai_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            if (cb == null || cb.SelectedItem == null)
+                return;
+
+            ComboBoxItem item =
+                  cb.SelectedItem as ComboBoxItem;
+
+            string LoaiHoatTai =
+                item.Content.ToString();
+
+            TaiTrongItem row =
+                (TaiTrongItem)((FrameworkElement)sender).DataContext;
+
+            switch (LoaiHoatTai)
+            {
+                case "Sửa chữa mái":
+                    row.Ptc = 30;
+                    row.N2 = 1.3;
+                    break;
+
+                case "Bảo Dưỡng":
+                    row.Ptc = 12;
+                    row.N2 = 1.3;
+                    break;
+
+
+            }
+            row.LoaiHoatTai = LoaiHoatTai;
+
+            row.B = Convert.ToDouble(txt_buocxago.Text);
+
+            row.Ptt = row.Ptc * row.N2 * row.B;
+            if (row == dsHoatTai.Last())
+            {
+                dsHoatTai.Add(new TaiTrongItem());
+
+                dgHoatTai.ItemsSource = null;
+                dgHoatTai.ItemsSource = dsHoatTai;
+            }
+            else
+            {
+                dgHoatTai.Items.Refresh();
+            }
+            txt_TongHoatTai.Text =
+        dsHoatTai.Sum(x => x.Ptt)
+                .ToString("0.00");
+
+
+        }
+        private void LoadHoatTai()
+        {
+            dsHoatTai.Clear();
+
+            dsHoatTai.Add(new TaiTrongItem());
+
+            dgHoatTai.ItemsSource = dsHoatTai;
+        }
+
+        private double ParseDoubleSafe(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return 0;
+            string clean = new string(text.Where(c => char.IsDigit(c) || c == '.' || c == ',' || c == '-').ToArray());
+            if (double.TryParse(clean, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double val))
+            {
+                return val;
+            }
+            if (double.TryParse(clean.Replace(".", ","), out val))
+            {
+                return val;
+            }
+            if (double.TryParse(clean.Replace(",", "."), out val))
+            {
+                return val;
+            }
+            return 0;
+        }
+
+        private void btn_Luu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GlobalData.TaiTrongGio = ParseDoubleSafe(txt_ketqua.Text);
+                GlobalData.TongTinhTai = ParseDoubleSafe(txt_TongTinhTai.Text);
+                GlobalData.TongHoatTai = ParseDoubleSafe(txt_TongHoatTai.Text);
+                GlobalData.DoDocMai = ParseDoubleSafe(txt_DoDocMai.Text);
+                GlobalData.NhipXaGo = ParseDoubleSafe(txt_NhipXaGo.Text);
+                GlobalData.TyGiang = ParseDoubleSafe(txt_SoTyTreoXaGoMai.Text);
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void UpdateStepUI()
+        {
+            grid_Step1.Visibility = currentStep == 1 ? Visibility.Visible : Visibility.Collapsed;
+            grid_Step2.Visibility = currentStep == 2 ? Visibility.Visible : Visibility.Collapsed;
+            grid_Step3.Visibility = currentStep == 3 ? Visibility.Visible : Visibility.Collapsed;
+
+            step1Circle.Background = currentStep >= 1 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#E2E8F0"));
+            step1CircleText.Foreground = currentStep >= 1 ? Brushes.White : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+            step1Text.Foreground = currentStep == 1 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#065F46")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+
+            step2Circle.Background = currentStep >= 2 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#E2E8F0"));
+            step2CircleText.Foreground = currentStep >= 2 ? Brushes.White : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+            step2Text.Foreground = currentStep == 2 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#065F46")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+
+            step3Circle.Background = currentStep >= 3 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#E2E8F0"));
+            step3CircleText.Foreground = currentStep >= 3 ? Brushes.White : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+            step3Text.Foreground = currentStep == 3 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#065F46")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+
+            btn_Back.Visibility = currentStep > 1 ? Visibility.Visible : Visibility.Collapsed;
+
+            if (currentStep == 3)
+            {
+                btn_Next.Content = "LƯU TOÀN BỘ TẢI TRỌNG VÀO CƠ SỞ DỮ LIỆU";
+                btn_Next.Background = new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669"));
+                btn_Next.Width = 350;
+            }
+            else
+            {
+                btn_Next.Content = "Tiếp theo ➔";
+                btn_Next.Background = new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669"));
+                btn_Next.Width = 300;
+            }
+        }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentStep > 1)
+            {
+                currentStep--;
+                UpdateStepUI();
+            }
+        }
+
+        private void btn_Next_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentStep == 1)
+            {
+                if (txt_ketqua.Text == "-- kg/m" || string.IsNullOrWhiteSpace(txt_ketqua.Text))
+                {
+                    btn_tinhtoan_Click(sender, e);
+                    if (txt_ketqua.Text == "-- kg/m" || string.IsNullOrWhiteSpace(txt_ketqua.Text))
+                    {
+                        return;
+                    }
+                }
+                currentStep = 2;
+                UpdateStepUI();
+            }
+            else if (currentStep == 2)
+            {
+                currentStep = 3;
+                UpdateStepUI();
+            }
+            else if (currentStep == 3)
+            {
+                btn_Luu_Click(sender, e);
+            }
         }
     }
 }

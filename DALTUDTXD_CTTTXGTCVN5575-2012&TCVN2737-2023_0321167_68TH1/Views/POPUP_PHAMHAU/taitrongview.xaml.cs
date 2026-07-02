@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -321,6 +322,7 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_
             TinhZe_Auto(null, null);
 
         }
+
         private void TinhgammaT_Auto(object sender, SelectionChangedEventArgs e)
         {
             if (cbb_capcongtrinh == null || txt_gammaT == null)
@@ -502,6 +504,119 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_
 
 
         }
+        private void LoadHoatTai()
+        {
+            dsHoatTai.Clear();
 
+            dsHoatTai.Add(new TaiTrongItem());
+
+            dgHoatTai.ItemsSource = dsHoatTai;
+        }
+
+        private double ParseDoubleSafe(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return 0;
+            string clean = new string(text.Where(c => char.IsDigit(c) || c == '.' || c == ',' || c == '-').ToArray());
+            if (double.TryParse(clean, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double val))
+            {
+                return val;
+            }
+            if (double.TryParse(clean.Replace(".", ","), out val))
+            {
+                return val;
+            }
+            if (double.TryParse(clean.Replace(",", "."), out val))
+            {
+                return val;
+            }
+            return 0;
+        }
+
+        private void btn_Luu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GlobalData.TaiTrongGio = ParseDoubleSafe(txt_ketqua.Text);
+                GlobalData.TongTinhTai = ParseDoubleSafe(txt_TongTinhTai.Text);
+                GlobalData.TongHoatTai = ParseDoubleSafe(txt_TongHoatTai.Text);
+                GlobalData.DoDocMai = ParseDoubleSafe(txt_DoDocMai.Text);
+                GlobalData.NhipXaGo = ParseDoubleSafe(txt_NhipXaGo.Text);
+                GlobalData.TyGiang = ParseDoubleSafe(txt_SoTyTreoXaGoMai.Text);
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void UpdateStepUI()
+        {
+            grid_Step1.Visibility = currentStep == 1 ? Visibility.Visible : Visibility.Collapsed;
+            grid_Step2.Visibility = currentStep == 2 ? Visibility.Visible : Visibility.Collapsed;
+            grid_Step3.Visibility = currentStep == 3 ? Visibility.Visible : Visibility.Collapsed;
+
+            step1Circle.Background = currentStep >= 1 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#E2E8F0"));
+            step1CircleText.Foreground = currentStep >= 1 ? Brushes.White : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+            step1Text.Foreground = currentStep == 1 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#065F46")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+
+            step2Circle.Background = currentStep >= 2 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#E2E8F0"));
+            step2CircleText.Foreground = currentStep >= 2 ? Brushes.White : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+            step2Text.Foreground = currentStep == 2 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#065F46")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+
+            step3Circle.Background = currentStep >= 3 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#E2E8F0"));
+            step3CircleText.Foreground = currentStep >= 3 ? Brushes.White : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+            step3Text.Foreground = currentStep == 3 ? new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#065F46")) : new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#64748B"));
+
+            btn_Back.Visibility = currentStep > 1 ? Visibility.Visible : Visibility.Collapsed;
+
+            if (currentStep == 3)
+            {
+                btn_Next.Content = "LƯU TOÀN BỘ TẢI TRỌNG VÀO CƠ SỞ DỮ LIỆU";
+                btn_Next.Background = new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669"));
+                btn_Next.Width = 350;
+            }
+            else
+            {
+                btn_Next.Content = "Tiếp theo ➔";
+                btn_Next.Background = new SolidColorBrush((System.Windows.Media.Color)ColorConverter.ConvertFromString("#059669"));
+                btn_Next.Width = 300;
+            }
+        }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentStep > 1)
+            {
+                currentStep--;
+                UpdateStepUI();
+            }
+        }
+
+        private void btn_Next_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentStep == 1)
+            {
+                if (txt_ketqua.Text == "-- kg/m" || string.IsNullOrWhiteSpace(txt_ketqua.Text))
+                {
+                    btn_tinhtoan_Click(sender, e);
+                    if (txt_ketqua.Text == "-- kg/m" || string.IsNullOrWhiteSpace(txt_ketqua.Text))
+                    {
+                        return;
+                    }
+                }
+                currentStep = 2;
+                UpdateStepUI();
+            }
+            else if (currentStep == 2)
+            {
+                currentStep = 3;
+                UpdateStepUI();
+            }
+            else if (currentStep == 3)
+            {
+                btn_Luu_Click(sender, e);
+            }
+        }
     }
-}
