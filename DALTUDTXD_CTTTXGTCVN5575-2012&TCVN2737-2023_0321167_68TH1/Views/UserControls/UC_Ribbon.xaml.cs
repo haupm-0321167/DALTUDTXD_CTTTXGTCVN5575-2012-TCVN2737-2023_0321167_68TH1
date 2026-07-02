@@ -25,8 +25,6 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserCo
         public UC_Ribbon()
         {
             InitializeComponent();
-            // TODO: Khai báo hoặc truyền Frame để sử dụng Mainframe
-            // this.Mainframe = mainFrame;
         }
 
         private void rbt_KetNoiEtabs_Click(object sender, RoutedEventArgs e)
@@ -48,6 +46,38 @@ namespace DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserCo
             // TODO: Tạo view Tohoptaitrongview trước khi gọi
             // Tohoptaitrongview MV = new Tohoptaitrongview();
             // MV.ShowDialog();
+        }
+
+        private void Btn2D_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnMatcatxago_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnMoment_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnBieudoluccat_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnBieudodovong_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void rbt_huongdan_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void rbt_Lienhe_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void rbt_Baoloi_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

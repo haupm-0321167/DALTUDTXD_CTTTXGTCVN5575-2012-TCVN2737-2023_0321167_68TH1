@@ -1,0 +1,134 @@
+﻿<Window x:Class="DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_PHAMHAU.HuongDanView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.POPUP_PHAMHAU"
+        mc:Ignorable="d"
+                Title="Hướng dẫn sử dụng &amp; Tài liệu" Height="480" Width="480"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="ModernGroupCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#0F172A" Opacity="0.04" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LinkButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#10B981"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="8" Padding="12,5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#059669"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#047857"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/background.png"
+Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#2A4B3D" Height="60" Padding="20,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="📚" FontSize="24" Margin="0,0,10,0"/>
+                <TextBlock Text="TÀI LIỆU HƯỚNG DẪN"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+
+        <Border Grid.Row="1" Style="{StaticResource ModernGroupCardStyle}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="Chọn liên kết bên dưới để xem hướng dẫn sử dụng và thuyết minh chi tiết:"
+                               FontSize="13" Foreground="#475569" Margin="0,0,0,20" TextWrapping="Wrap" LineHeight="18"/>
+
+
+                    <Border Background="#F1F5F9" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <TextBlock Text="🎥 Video Hướng Dẫn Sử Dụng" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                                <TextBlock Text="Xem video hướng dẫn chi tiết các bước tính toán và thiết kế xà gồ." FontSize="11" Foreground="#64748B" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <Button Grid.Column="1" Content="Xem Video" Style="{StaticResource LinkButtonStyle}" Click="BtnVideo_Click" Width="100"/>
+                        </Grid>
+                    </Border>
+
+
+                    <Border Background="#F1F5F9" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <TextBlock Text="📝 Thuyết Minh Tính Toán" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                                <TextBlock Text="Tài liệu thuyết minh cơ sở lý thuyết và các công thức tính toán xà gồ." FontSize="11" Foreground="#64748B" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <Button Grid.Column="1" Content="Xem Tài Liệu" Style="{StaticResource LinkButtonStyle}" Click="BtnThuyetMinh_Click" Width="100"/>
+                        </Grid>
+                    </Border>
+
+
+                    <Border Background="#F1F5F9" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <TextBlock Text="📘 Tài Liệu HDSD (PDF)" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                                <TextBlock Text="Hướng dẫn chi tiết cài đặt và sử dụng phần mềm từ A đến Z." FontSize="11" Foreground="#64748B" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <Button Grid.Column="1" Content="Tải PDF" Style="{StaticResource LinkButtonStyle}" Click="BtnHDSD_Click" Width="100"/>
+                        </Grid>
+                    </Border>
+
+
+                    <Border Background="#ECFDF5" CornerRadius="8" Padding="10" Margin="0,10,0,0">
+                        <TextBlock Text="💡 Nếu gặp khó khăn trong quá trình sử dụng, vui lòng bấm vào nút 'Liên hệ' hoặc 'Báo lỗi' trên thanh công cụ để được hỗ trợ kịp thời."
+                                   FontSize="11" Foreground="#047857" TextWrapping="Wrap" LineHeight="16"/>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>

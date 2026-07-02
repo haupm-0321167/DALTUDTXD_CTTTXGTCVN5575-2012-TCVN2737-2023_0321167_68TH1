@@ -4,12 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1.Views.UserControls"
-                      mc:Ignorable="d" 
+             mc:Ignorable="d" 
          d:DesignHeight="140" d:DesignWidth="900">
     <Grid>
         <Ribbon Grid.Row="0" SelectedIndex="0" Background="#FFF1F5F9">
-
-
             <RibbonTab Header="Thiết kế &amp; Phân tích">
                 <RibbonGroup Header="Dự án &amp; Kết nối">
                     <RibbonButton x:Name="rbt_Mo" Label="Mở dự án" SmallImageSource="/Assets/Icons/open.png"/>
@@ -27,6 +25,25 @@
                     <RibbonButton Label="Kiểm tra bền" x:Name="rbt_KTB" Click="rbt_Kiemtraben_Click" LargeImageSource="/Assets/Icons/kiemtradoben.png" />
                     <RibbonButton Label="Kiểm tra độ võng" x:Name="rbt_KTDV" Click="rbt_Kiemtradovong_Click" LargeImageSource="/Assets/Icons/kiemtradovong.png" />
                     <RibbonButton Label="Xuất báo cáo Excel" x:Name="rbt_XuatExcel" Click="rbt_XuatExcel_Click" LargeImageSource="/Assets/Icons/xuatexcel.png" />
+                </RibbonGroup>
+            </RibbonTab>
+
+            <RibbonTab Header="Hiển thị &amp; Trợ giúp">
+                <RibbonGroup Header="Đồ họa trực quan">
+                    <RibbonButton Label="Chế độ 2D" Click="Btn2D_Click" SmallImageSource="/Assets/Icons/2D.png" />
+                    <RibbonButton Label="Mặt cắt xà gồ" Click="BtnMatcatxago_Click" SmallImageSource="/Assets/Icons/tinhphanlucgoi.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="Biểu đồ kết quả">
+                    <RibbonButton Label="Biểu đồ Moment" Click="BtnMoment_Click" SmallImageSource="/Assets/Icons/bieudonoiluc.png" />
+                    <RibbonButton Label="Biểu đồ Lực cắt" Click="BtnBieudoluccat_Click" SmallImageSource="/Assets/Icons/noiluc.png" />
+                    <RibbonButton Label="Biểu đồ Độ võng" Click="BtnBieudodovong_Click" SmallImageSource="/Assets/Icons/tinhdovong.png" />
+                </RibbonGroup>
+
+                <RibbonGroup Header="Hỗ trợ kỹ thuật">
+                    <RibbonButton x:Name="rbt_huongdan" Label="Tài liệu HDSD" Click="rbt_huongdan_Click" SmallImageSource="/Assets/Icons/huongdan.png"/>
+                    <RibbonButton x:Name="rbt_Lienhe" Label="Liên hệ" Click="rbt_Lienhe_Click" SmallImageSource="/Assets/Icons/contact-mail.png" />
+                    <RibbonButton x:Name="rbt_Baoloi" Label="Báo lỗi" Click="rbt_Baoloi_Click" SmallImageSource="/Assets/Icons/bug-report.png"/>
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
