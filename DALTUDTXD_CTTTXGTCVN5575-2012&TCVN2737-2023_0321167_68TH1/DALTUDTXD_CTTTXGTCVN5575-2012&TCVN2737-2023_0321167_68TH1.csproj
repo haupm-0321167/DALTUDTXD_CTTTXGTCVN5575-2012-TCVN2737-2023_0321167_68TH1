@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B845F238-4BED-BA74-0604-1FA7015063F7}</ProjectGuid>
+    <ProjectGuid>{15816300-8B89-42BB-A9C5-7AE60CEE0953}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DALTUDTXD_CTTTXGTCVN5575_2012_TCVN2737_2023_0321167_68TH1</RootNamespace>
     <AssemblyName>DALTUDTXD_CTTTXGTCVN5575-2012&amp;TCVN2737-2023_0321167_68TH1</AssemblyName>
@@ -87,7 +87,6 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-<<<<<<< HEAD
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -149,8 +148,6 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-=======
->>>>>>> origin/HAUPM/FEATURE/MODELS
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -169,7 +166,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
     <Compile Include="Models\GlobalData.cs" />
     <Compile Include="Models\XagoModels.cs" />
     <Compile Include="Views\Pages\ChonhaPage.xaml.cs">
@@ -186,45 +182,13 @@
     </Compile>
     <Compile Include="Views\POPUP_TA\BIEUDOMOMENT_VIEW.xaml.cs">
       <DependentUpon>BIEUDOMOMENT_VIEW.xaml</DependentUpon>
-=======
-    <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Diadiem.cs" />
-    <Compile Include="Models\TaiTrongItem.cs" />
-    <Compile Include="Models\ToHopTaiTrong.cs" />
-    <Compile Include="Views\Pages\ThongsoPage.xaml.cs">
-      <DependentUpon>ThongsoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\ContactView.xaml.cs">
-      <DependentUpon>ContactView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\Emailview.xaml.cs">
-      <DependentUpon>Emailview.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\Errorview.xaml.cs">
-      <DependentUpon>Errorview.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\HuongDanView.xaml.cs">
-      <DependentUpon>HuongDanView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\Inputbh.xaml.cs">
-      <DependentUpon>Inputbh.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\taitrongview.xaml.cs">
-      <DependentUpon>taitrongview.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\POPUP_PHAMHAU\Tohoptaitrongview.xaml.cs">
-      <DependentUpon>Tohoptaitrongview.xaml</DependentUpon>
->>>>>>> origin/HAUPM/FEATURE/MODELS
     </Compile>
     <Compile Include="Views\UserControls\UC_Ribbon.xaml.cs">
       <DependentUpon>UC_Ribbon.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Views\UserControls\UC_Status.xaml.cs">
       <DependentUpon>UC_Status.xaml</DependentUpon>
     </Compile>
-=======
->>>>>>> origin/HAUPM/FEATURE/MODELS
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -237,7 +201,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< HEAD
     <Page Include="Views\Pages\ChonhaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,37 +218,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\POPUP_TA\BIEUDOMOMENT_VIEW.xaml">
-=======
-    <Page Include="Views\Pages\ThongsoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\ContactView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\Emailview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\Errorview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\HuongDanView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\Inputbh.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\taitrongview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\POPUP_PHAMHAU\Tohoptaitrongview.xaml">
->>>>>>> origin/HAUPM/FEATURE/MODELS
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -293,13 +225,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-<<<<<<< HEAD
     <Page Include="Views\UserControls\UC_Status.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-=======
->>>>>>> origin/HAUPM/FEATURE/MODELS
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -319,15 +248,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-<<<<<<< HEAD
     <None Include="Data\diadiem.json" />
     <None Include="Data\xagocnguoi.json" />
     <None Include="Data\xagocnong.json" />
     <None Include="Data\xagohop.json" />
     <None Include="packages.config" />
-=======
-    <None Include="Data\Diadiem.json" />
->>>>>>> origin/HAUPM/FEATURE/MODELS
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
